@@ -4,6 +4,7 @@ import cad97.spawnercraft.handler.ConfigHandler;
 import cad97.spawnercraft.handler.DropsListener;
 import cad97.spawnercraft.init.SpawnerCraftBlocks;
 import cad97.spawnercraft.init.SpawnerCraftItems;
+import cad97.spawnercraft.init.SpawnerCraftRecipes;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -26,7 +27,7 @@ abstract class CommonProxy implements IProxy {
     @Override
     @OverridingMethodsMustInvokeSuper
     public void init(FMLInitializationEvent event) {
-        // stub
+        SpawnerCraftRecipes.registerRecipes();
     }
 
     @Override

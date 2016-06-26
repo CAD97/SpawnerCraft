@@ -1,5 +1,6 @@
 package cad97.spawnercraft.init;
 
+import cad97.spawnercraft.items.ItemMobAgglomeration;
 import cad97.spawnercraft.items.ItemMobEssence;
 import cad97.spawnercraft.utility.LogHelper;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -19,10 +20,12 @@ import javax.annotation.Nonnull;
 public class SpawnerCraftItems {
 
     public static final ItemMobEssence mobEssence = new ItemMobEssence();
+    public static final ItemMobAgglomeration mobAgglomeration = new ItemMobAgglomeration();
 
     public static void registerItems() {
         // items
         GameRegistry.register(mobEssence);
+        GameRegistry.register(mobAgglomeration);
         // block items
         GameRegistry.register(new ItemBlock(SpawnerCraftBlocks.mobCage), SpawnerCraftBlocks.mobCage.getRegistryName());
         LogHelper.logInfo("Items initialized.");
@@ -32,6 +35,8 @@ public class SpawnerCraftItems {
     public static void registerModels() {
         ModelLoader.setCustomModelResourceLocation(mobEssence,
                 0, new ModelResourceLocation(mobEssence.getRegistryName(), "inventory"));
+        ModelLoader.setCustomModelResourceLocation(mobAgglomeration,
+                0, new ModelResourceLocation(mobAgglomeration.getRegistryName(), "inventory"));
         LogHelper.logInfo("Item models initialized.");
     }
 
@@ -42,6 +47,6 @@ public class SpawnerCraftItems {
                 EntityList.EntityEggInfo eggInfo = EntityList.ENTITY_EGGS.get(ItemMonsterPlacer.getEntityIdFromItem(stack));
                 return eggInfo == null ? -1 : (tintIndex == 0 ? eggInfo.primaryColor : eggInfo.secondaryColor);
             }
-        }, SpawnerCraftItems.mobEssence);
+        }, mobEssence, mobAgglomeration);
     }
 }

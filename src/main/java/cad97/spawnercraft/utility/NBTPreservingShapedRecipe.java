@@ -1,11 +1,13 @@
 package cad97.spawnercraft.utility;
 
+import cad97.spawnercraft.SpawnerCraft;
 import com.google.common.base.Objects;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+import net.minecraftforge.oredict.RecipeSorter;
 
 import javax.annotation.Nonnull;
 
@@ -14,6 +16,11 @@ import javax.annotation.Nonnull;
  * This TagCompound is then given to the output ItemStack.
  */
 public class NBTPreservingShapedRecipe extends ShapedRecipes {
+
+    static {
+        RecipeSorter.register(SpawnerCraft.MOD_ID + ":nbtshaped", NBTPreservingShapedRecipe.class,
+                RecipeSorter.Category.SHAPED, "after:minecraft:shaped before:minecraft:shapeless");
+    }
 
     public NBTPreservingShapedRecipe(int width, int height, ItemStack[] items, ItemStack output) {
         super(width, height, items, output);
@@ -33,18 +40,18 @@ public class NBTPreservingShapedRecipe extends ShapedRecipes {
     public boolean matches(@Nonnull InventoryCrafting inv, World worldIn) {
         matchingCompound = null;
 
-        for (ItemStack recipeItem : recipeItems) {
-            if (recipeItem != null) {
-                matchingCompound = recipeItem.getTagCompound();
+        for (int i = 0; i < inv.getSizeInventory(); ++i) {
+            ItemStack itemStack = inv.getStackInSlot(i);
+            if (itemStack != null) {
+                matchingCompound = itemStack.getTagCompound();
                 break;
             }
         }
 
-        for (ItemStack recipeItem : recipeItems) {
-            if (recipeItem != null) {
-                if (Objects.equal(recipeItem.getTagCompound(), matchingCompound)) {
-                    return false;
-                }
+        for (int i = 0; i < inv.getSizeInventory(); ++i) {
+            ItemStack itemStack = inv.getStackInSlot(i);
+            if (itemStack != null && !Objects.equal(itemStack.getTagCompound(), matchingCompound)) {
+                return false;
             }
         }
 

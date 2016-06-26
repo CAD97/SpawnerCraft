@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "spawnercraft:items/mobAgglomeration",
+    "layer1": "spawnercraft:items/mobAgglomeration_overlay"
+  }
+}
