@@ -2,6 +2,7 @@ package cad97.spawnercraft.init;
 
 import cad97.spawnercraft.items.ItemMobAgglomeration;
 import cad97.spawnercraft.items.ItemMobEssence;
+import cad97.spawnercraft.items.ItemMobRod;
 import cad97.spawnercraft.items.ItemMobSpirit;
 import cad97.spawnercraft.utility.LogHelper;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -23,11 +24,13 @@ public class SpawnerCraftItems {
     public static final ItemMobEssence mobEssence = new ItemMobEssence();
     public static final ItemMobAgglomeration mobAgglomeration = new ItemMobAgglomeration();
     public static final ItemMobSpirit mobSpirit = new ItemMobSpirit();
+    public static final ItemMobRod mobRod = new ItemMobRod();
 
     public static void registerItems() {
         GameRegistry.register(mobEssence);
         GameRegistry.register(mobAgglomeration);
         GameRegistry.register(mobSpirit);
+        GameRegistry.register(mobRod);
         GameRegistry.register(new ItemBlock(SpawnerCraftBlocks.mobCage), SpawnerCraftBlocks.mobCage.getRegistryName());
         LogHelper.logInfo("Items initialized.");
     }
@@ -40,6 +43,8 @@ public class SpawnerCraftItems {
                 0, new ModelResourceLocation(mobAgglomeration.getRegistryName(), "inventory"));
         ModelLoader.setCustomModelResourceLocation(mobSpirit,
                 0, new ModelResourceLocation(mobSpirit.getRegistryName(), "inventory"));
+        ModelLoader.setCustomModelResourceLocation(mobRod,
+                0, new ModelResourceLocation(mobRod.getRegistryName(), "inventory"));
         LogHelper.logInfo("Item models initialized.");
     }
 

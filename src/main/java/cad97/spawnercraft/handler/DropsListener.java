@@ -22,7 +22,12 @@ public class DropsListener {
 
     @SubscribeEvent
     public void onMobDrops(LivingDropsEvent event) {
-        if (event.getSource().getSourceOfDamage() instanceof EntityPlayer) {
+        if (event.getSource().getSourceOfDamage() instanceof EntityPlayer && (
+                !ConfigHandler.dropsRequireFishing ||
+                        new ItemStack(SpawnerCraftItems.mobRod).isItemEqualIgnoreDurability(
+                                ((EntityPlayer) event.getSource().getSourceOfDamage()).getHeldItemMainhand()
+                        )
+        )) {
             Entity entity = event.getEntity();
             if (EntityList.ENTITY_EGGS.containsKey(EntityList.getEntityString(entity))) {
                 ItemStack stack = new ItemStack(SpawnerCraftItems.mobEssence);
