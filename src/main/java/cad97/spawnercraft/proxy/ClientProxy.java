@@ -1,6 +1,6 @@
 package cad97.spawnercraft.proxy;
 
-import cad97.spawnercraft.block.SpawnerCraftBlocks;
+import cad97.spawnercraft.init.SpawnerCraftBlocks;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 public final class ClientProxy extends CommonProxy {

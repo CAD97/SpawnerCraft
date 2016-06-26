@@ -1,6 +1,6 @@
 package cad97.spawnercraft.handler;
 
-import cad97.spawnercraft.block.SpawnerCraftBlocks;
+import cad97.spawnercraft.init.SpawnerCraftBlocks;
 import net.minecraft.block.BlockMobSpawner;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.init.Enchantments;

@@ -1,5 +1,6 @@
-package cad97.spawnercraft.block;
+package cad97.spawnercraft.init;
 
+import cad97.spawnercraft.block.BlockMobCage;
 import cad97.spawnercraft.utility.LogHelper;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;

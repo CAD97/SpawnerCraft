@@ -1,8 +1,8 @@
 package cad97.spawnercraft.proxy;
 
-import cad97.spawnercraft.block.SpawnerCraftBlocks;
 import cad97.spawnercraft.handler.ConfigHandler;
 import cad97.spawnercraft.handler.DropsListener;
+import cad97.spawnercraft.init.SpawnerCraftBlocks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
