@@ -1,5 +1,11 @@
 package cad97.spawnercraft.proxy;
 
-public final class ClientProxy extends CommonProxy {
+import cad97.spawnercraft.block.SpawnerCraftBlocks;
 
+public final class ClientProxy extends CommonProxy {
+    @Override
+    public void preInit() {
+        super.preInit();
+        SpawnerCraftBlocks.registerModels();
+    }
 }
