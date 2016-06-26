@@ -1,1 +1,7 @@
 item.spawnercraft.mobEssence.name=Essence of %s
+item.spawnercraft.mobAgglomeration.name=Agglomeration of %s
+item.spawnercraft.mobSpirit.name=Spirit of %s
+
+tile.spawnercraft.mobCage.name=Empty Spawner
+
+itemGroup.spawnercraft.tab=SpawnerCraft
