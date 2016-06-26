@@ -3,6 +3,7 @@ package cad97.spawnercraft.proxy;
 import cad97.spawnercraft.handler.ConfigHandler;
 import cad97.spawnercraft.handler.DropsListener;
 import cad97.spawnercraft.init.SpawnerCraftBlocks;
+import cad97.spawnercraft.init.SpawnerCraftItems;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -19,6 +20,7 @@ abstract class CommonProxy implements IProxy {
         MinecraftForge.EVENT_BUS.register(ConfigHandler.instance);
         MinecraftForge.EVENT_BUS.register(DropsListener.instance);
         SpawnerCraftBlocks.registerBlocks();
+        SpawnerCraftItems.registerItems();
     }
 
     @Override

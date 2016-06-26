@@ -5,7 +5,6 @@ import cad97.spawnercraft.utility.LogHelper;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -17,13 +16,12 @@ public class SpawnerCraftBlocks {
 
     public static void registerBlocks() {
         GameRegistry.register(mobCage);
-        GameRegistry.register(new ItemBlock(mobCage), mobCage.getRegistryName());
         LogHelper.logInfo("Blocks initialized.");
     }
 
+    @SuppressWarnings("ConstantConditions")
     @SideOnly(Side.CLIENT)
     public static void registerModels() {
-        //noinspection ConstantConditions
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(mobCage),
                 0, new ModelResourceLocation(mobCage.getRegistryName(), "inventory")
         );
