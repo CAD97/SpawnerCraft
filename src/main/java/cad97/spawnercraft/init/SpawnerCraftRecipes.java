@@ -12,5 +12,11 @@ public class SpawnerCraftRecipes {
                 new ItemStack[]{essenceStack, essenceStack, essenceStack, essenceStack},
                 new ItemStack(SpawnerCraftItems.mobAgglomeration)
         ));
+        ItemStack agglomerationStack = new ItemStack(SpawnerCraftItems.mobAgglomeration);
+        GameRegistry.addRecipe(new NBTPreservingShapedRecipe(
+                2, 2,
+                new ItemStack[]{agglomerationStack, agglomerationStack, agglomerationStack, agglomerationStack},
+                new ItemStack(SpawnerCraftItems.mobSpirit)
+        ));
     }
 }

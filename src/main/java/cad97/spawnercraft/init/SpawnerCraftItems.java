@@ -2,6 +2,7 @@ package cad97.spawnercraft.init;
 
 import cad97.spawnercraft.items.ItemMobAgglomeration;
 import cad97.spawnercraft.items.ItemMobEssence;
+import cad97.spawnercraft.items.ItemMobSpirit;
 import cad97.spawnercraft.utility.LogHelper;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.color.IItemColor;
@@ -21,12 +22,12 @@ public class SpawnerCraftItems {
 
     public static final ItemMobEssence mobEssence = new ItemMobEssence();
     public static final ItemMobAgglomeration mobAgglomeration = new ItemMobAgglomeration();
+    public static final ItemMobSpirit mobSpirit = new ItemMobSpirit();
 
     public static void registerItems() {
-        // items
         GameRegistry.register(mobEssence);
         GameRegistry.register(mobAgglomeration);
-        // block items
+        GameRegistry.register(mobSpirit);
         GameRegistry.register(new ItemBlock(SpawnerCraftBlocks.mobCage), SpawnerCraftBlocks.mobCage.getRegistryName());
         LogHelper.logInfo("Items initialized.");
     }
@@ -37,6 +38,8 @@ public class SpawnerCraftItems {
                 0, new ModelResourceLocation(mobEssence.getRegistryName(), "inventory"));
         ModelLoader.setCustomModelResourceLocation(mobAgglomeration,
                 0, new ModelResourceLocation(mobAgglomeration.getRegistryName(), "inventory"));
+        ModelLoader.setCustomModelResourceLocation(mobSpirit,
+                0, new ModelResourceLocation(mobSpirit.getRegistryName(), "inventory"));
         LogHelper.logInfo("Item models initialized.");
     }
 
@@ -47,6 +50,7 @@ public class SpawnerCraftItems {
                 EntityList.EntityEggInfo eggInfo = EntityList.ENTITY_EGGS.get(ItemMonsterPlacer.getEntityIdFromItem(stack));
                 return eggInfo == null ? -1 : (tintIndex == 0 ? eggInfo.primaryColor : eggInfo.secondaryColor);
             }
-        }, mobEssence, mobAgglomeration);
+        }, mobEssence, mobAgglomeration, mobSpirit);
+        LogHelper.logInfo("Item colors initialized.");
     }
 }
