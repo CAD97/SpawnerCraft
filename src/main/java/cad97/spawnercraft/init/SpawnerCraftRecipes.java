@@ -4,6 +4,7 @@ import cad97.spawnercraft.handler.ConfigHandler;
 import cad97.spawnercraft.utility.LogHelper;
 import cad97.spawnercraft.utility.NBTPreservingShapedRecipe;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -30,6 +31,13 @@ public class SpawnerCraftRecipes {
                     'I', new ItemStack(Blocks.IRON_BARS)
             );
         }
+        GameRegistry.addShapedRecipe(
+                new ItemStack(SpawnerCraftItems.mobRod),
+                "F",
+                "S",
+                'F', new ItemStack(Items.FISHING_ROD),
+                'S', new ItemStack(SpawnerCraftBlocks.mobCage)
+        );
         LogHelper.logInfo("Recipes registered.");
     }
 }
