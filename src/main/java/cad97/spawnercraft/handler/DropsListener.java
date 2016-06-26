@@ -26,7 +26,6 @@ public class DropsListener {
             )) {
                 event.getDrops().add(new ItemStack(SpawnerCraftBlocks.mobCage));
             }
-            System.out.println(event.isSilkTouching());
         }
     }
 }

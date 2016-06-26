@@ -14,7 +14,7 @@ public class ConfigHandler {
     private ConfigHandler() {
     }
 
-    private static Configuration config;
+    public static Configuration config;
 
     @SuppressWarnings("WeakerAccess")
     public static boolean spawnerDropRequireSilk;
