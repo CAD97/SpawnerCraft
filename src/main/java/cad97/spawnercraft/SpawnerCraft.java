@@ -13,6 +13,7 @@ public class SpawnerCraft {
 
     public static final String MOD_ID = "spawnercraft";
     public static final String MOD_NAME = "SpawnerCraft";
+    @SuppressWarnings("WeakerAccess")
     public static final String VERSION = "3.0";
 
     @Mod.Instance
@@ -23,19 +24,19 @@ public class SpawnerCraft {
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        proxy.preInit();
+        proxy.preInit(event);
         LogHelper.logInfo("preInit finished.");
     }
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
-        proxy.init();
+        proxy.init(event);
         LogHelper.logInfo("init finished.");
     }
 
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
-        proxy.postInit();
+        proxy.postInit(event);
         LogHelper.logInfo("postInit finished.");
     }
 }

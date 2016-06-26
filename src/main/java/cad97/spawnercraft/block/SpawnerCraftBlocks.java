@@ -12,7 +12,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class SpawnerCraftBlocks {
 
-    @SuppressWarnings("WeakerAccess")
     public static final Block mobCage = new BlockMobCage();
 
     public static void registerBlocks() {

@@ -9,7 +9,15 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import java.io.File;
 
 public class ConfigHandler {
-    public static Configuration config;
+    public static final ConfigHandler instance = new ConfigHandler();
+
+    private ConfigHandler() {
+    }
+
+    private static Configuration config;
+
+    @SuppressWarnings("WeakerAccess")
+    public static boolean spawnerDropRequireSilk;
 
     public static void init(File configFile) {
         if (config == null) {
@@ -28,6 +36,9 @@ public class ConfigHandler {
     }
 
     private static void loadConfig() {
+        spawnerDropRequireSilk = config.get(Configuration.CATEGORY_GENERAL, "spawnerDropRequireSilk", false,
+                "Does a Mob Spawner require Silk Touch to drop a Mob Cage?").getBoolean(false);
+
         if (config.hasChanged()) {
             config.save();
         }
