@@ -1,6 +1,9 @@
 package cad97.spawnercraft.init;
 
+import cad97.spawnercraft.handler.ConfigHandler;
+import cad97.spawnercraft.utility.LogHelper;
 import cad97.spawnercraft.utility.NBTPreservingShapedRecipe;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -18,5 +21,15 @@ public class SpawnerCraftRecipes {
                 new ItemStack[]{agglomerationStack, agglomerationStack, agglomerationStack, agglomerationStack},
                 new ItemStack(SpawnerCraftItems.mobSpirit)
         ));
+        if (ConfigHandler.spawnerCraftable) {
+            GameRegistry.addShapedRecipe(
+                    new ItemStack(SpawnerCraftBlocks.mobCage),
+                    "III",
+                    "I I",
+                    "III",
+                    'I', new ItemStack(Blocks.IRON_BARS)
+            );
+        }
+        LogHelper.logInfo("Recipes registered.");
     }
 }

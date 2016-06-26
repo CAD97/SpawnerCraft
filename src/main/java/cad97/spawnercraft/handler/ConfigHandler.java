@@ -18,6 +18,7 @@ public class ConfigHandler {
 
     @SuppressWarnings("WeakerAccess")
     public static boolean spawnerDropRequireSilk;
+    public static boolean spawnerCraftable;
 
     public static void init(File configFile) {
         if (config == null) {
@@ -38,6 +39,8 @@ public class ConfigHandler {
     private static void loadConfig() {
         spawnerDropRequireSilk = config.get(Configuration.CATEGORY_GENERAL, "spawnerDropRequireSilk", false,
                 "Does a Mob Spawner require Silk Touch to drop a Mob Cage?").getBoolean(false);
+        spawnerCraftable = config.get(Configuration.CATEGORY_GENERAL, "spawnerCraftable", false,
+                "Is it possible to craft an Empty Monster Spawner from iron bars?").setRequiresMcRestart(true).getBoolean();
 
         if (config.hasChanged()) {
             config.save();
