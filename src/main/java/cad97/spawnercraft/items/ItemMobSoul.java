@@ -16,7 +16,8 @@ import java.util.List;
  * Base class for mobEssence, mobAgglomeration, and mobSpirit
  */
 abstract class ItemMobSoul extends SpawnerCraftItem {
-    public ItemMobSoul() {
+    ItemMobSoul() {
+        super();
         setMaxStackSize(64);
         setHasSubtypes(true);
     }

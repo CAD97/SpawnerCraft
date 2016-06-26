@@ -2,7 +2,7 @@ package cad97.spawnercraft.items;
 
 import cad97.spawnercraft.SpawnerCraft;
 
-public class ItemMobEssence extends SpawnerCraftItem {
+public class ItemMobEssence extends ItemMobSoul {
     public ItemMobEssence() {
         super();
         setUnlocalizedName("mobEssence");
