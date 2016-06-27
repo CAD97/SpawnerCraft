@@ -43,7 +43,7 @@ public class ConfigHandler {
                 "Does a Mob Spawner require Silk Touch to drop a Mob Cage?").getBoolean(false);
         spawnerCraftable = config.get(Configuration.CATEGORY_GENERAL, "spawnerCraftable", false,
                 "Is it possible to craft an Empty Monster Spawner from iron bars?").setRequiresMcRestart(true).getBoolean();
-        dropsRequireFishing = config.get(Configuration.CATEGORY_GENERAL, "dropsRequireFishing", false,
+        dropsRequireFishing = config.get(Configuration.CATEGORY_GENERAL, "dropsRequireFishing", true,
                 "Do Mob Essence drops require the use of a Mob Fishing Pole?").getBoolean();
 
         if (config.hasChanged()) {
