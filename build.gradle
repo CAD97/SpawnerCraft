@@ -7,18 +7,21 @@ buildscript {
             url = "http://files.minecraftforge.net/maven"
         }
     }
+    //noinspection GroovyAssignabilityCheck
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
     }
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "3.0-pre1"
+version = "3.0"
+//noinspection GroovyUnusedAssignment
 group = "cad97.spawnercraft" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+//noinspection GroovyUnusedAssignment
 archivesBaseName = "SpawnerCraft3"
 
 minecraft {
-    version = "1.9.4-12.17.0.1976"
+    version = "1.10-12.18.0.2000-1.10.0"
     runDir = "run"
 
     // the mappings can be changed at any time, and must be in the following format.
@@ -30,6 +33,7 @@ minecraft {
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
 }
 
+//noinspection GroovyAssignabilityCheck
 dependencies {
     // you may put jars on which you depend on in ./libs
     // or you may define them like so..
@@ -54,6 +58,7 @@ dependencies {
 
 }
 
+//noinspection GroovyAssignabilityCheck
 processResources
         {
             // this will ensure that this task is redone when the versions change.

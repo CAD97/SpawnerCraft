@@ -2,14 +2,19 @@ package cad97.spawnercraft.handler;
 
 import cad97.spawnercraft.init.SpawnerCraftBlocks;
 import cad97.spawnercraft.init.SpawnerCraftItems;
+import cad97.spawnercraft.init.SpawnerCraftMobAlias;
 import net.minecraft.block.BlockMobSpawner;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
+import net.minecraft.entity.monster.*;
+import net.minecraft.entity.passive.EntityHorse;
+import net.minecraft.entity.passive.HorseType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Enchantments;
 import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -29,9 +34,43 @@ public class DropsListener {
                         )
         )) {
             Entity entity = event.getEntity();
+
             if (EntityList.ENTITY_EGGS.containsKey(EntityList.getEntityString(entity))) {
                 ItemStack stack = new ItemStack(SpawnerCraftItems.mobEssence);
-                ItemMonsterPlacer.applyEntityIdToItemStack(stack, EntityList.getEntityString(entity));
+
+                String customID = null;
+
+                if (ConfigHandler.witherSkeletonSoul && entity instanceof EntitySkeleton &&
+                        ((EntitySkeleton) entity).func_189771_df() == SkeletonType.WITHER) {
+                    customID = "WitherSkeleton";
+                } else if (ConfigHandler.straySoul && entity instanceof EntitySkeleton &&
+                        ((EntitySkeleton) entity).func_189771_df() == SkeletonType.STRAY) {
+                    customID = "Stray";
+                } else if (ConfigHandler.huskSoul && entity instanceof EntityZombie &&
+                        ((EntityZombie) entity).func_189777_di() == ZombieType.HUSK) {
+                    customID = "Husk";
+                } else if (ConfigHandler.elderGuardianSoul && entity instanceof EntityGuardian &&
+                        ((EntityGuardian) entity).isElder()) {
+                    customID = "ElderGuardian";
+                } else if (ConfigHandler.donkeySoul && entity instanceof EntityHorse &&
+                        ((EntityHorse) entity).getType() == HorseType.DONKEY) {
+                    customID = "Donkey";
+                } else if (ConfigHandler.muleSoul && entity instanceof EntityHorse &&
+                        ((EntityHorse) entity).getType() == HorseType.MULE) {
+                    customID = "Mule";
+                } else if (ConfigHandler.skeletonHorseSoul && entity instanceof EntityHorse &&
+                        ((EntityHorse) entity).getType() == HorseType.SKELETON) {
+                    customID = "SkeletonHorse";
+                }
+
+                if (customID != null) {
+                    stack.setTagCompound(new NBTTagCompound());
+                    //noinspection ConstantConditions
+                    stack.getTagCompound().setTag("EntityTag", SpawnerCraftMobAlias.customNBT.get(customID));
+                } else {
+                    ItemMonsterPlacer.applyEntityIdToItemStack(stack, EntityList.getEntityString(entity));
+                }
+                
                 entity.entityDropItem(stack, 0.0F);
             }
         }

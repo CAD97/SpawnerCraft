@@ -2,7 +2,6 @@ package cad97.spawnercraft.handler;
 
 import cad97.spawnercraft.SpawnerCraft;
 import cad97.spawnercraft.utility.LogHelper;
-import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -34,8 +33,9 @@ public class ConfigHandler {
     public static void init(File configFile) {
         if (config == null) {
             config = new Configuration(configFile);
-            loadConfig();
         }
+
+        loadConfig();
 
         LogHelper.logInfo("ConfigHandler initialized.");
     }
@@ -55,13 +55,11 @@ public class ConfigHandler {
         dropsRequireFishing = config.get(Configuration.CATEGORY_GENERAL, "dropsRequireFishing", true,
                 "Do Mob Essence drops require the use of a Mob Fishing Pole?").getBoolean();
 
-        boolean minecraft10 = Integer.parseInt(Minecraft.getMinecraft().getVersion().split("\\.")[1]) > 9;
-
         witherSkeletonSoul = config.get("Custom Souls", "witherSkeletonSoul", true,
                 "Is there a Mob Soul for Wither Skeletons?").setRequiresMcRestart(true).getBoolean();
-        straySoul = config.get("Custom Souls", "straySoul", minecraft10,
+        straySoul = config.get("Custom Souls", "straySoul", true,
                 "Is there a Mob Soul for Strays?").setRequiresMcRestart(true).getBoolean();
-        huskSoul = config.get("Custom Souls", "huskSoul", minecraft10,
+        huskSoul = config.get("Custom Souls", "huskSoul", true,
                 "Is there a Mob Soul for Husks?").setRequiresMcRestart(true).getBoolean();
         elderGuardianSoul = config.get("Custom Souls", "elderGuardianSoul", false,
                 "Is there a Mob Soul for Elder Guardians?").setRequiresMcRestart(true).getBoolean();
