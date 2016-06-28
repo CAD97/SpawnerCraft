@@ -1,10 +1,12 @@
 package cad97.spawnercraft.items;
 
+import cad97.spawnercraft.init.SpawnerCraftMobAlias;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityList;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -42,6 +44,15 @@ abstract class ItemMobSoul extends SpawnerCraftItem {
         for (EntityList.EntityEggInfo egg : EntityList.ENTITY_EGGS.values()) {
             ItemStack stack = new ItemStack(item);
             ItemMonsterPlacer.applyEntityIdToItemStack(stack, egg.spawnedID);
+            subItems.add(stack);
+        }
+        for (String id : SpawnerCraftMobAlias.customEggs.keySet()) {
+            ItemStack stack = new ItemStack(item);
+            NBTTagCompound nbt = stack.hasTagCompound() ? stack.getTagCompound() : new NBTTagCompound();
+            assert nbt != null;
+            nbt.setTag("EntityTag", SpawnerCraftMobAlias.customNBT.get(id));
+            ((NBTTagCompound) nbt.getTag("EntityTag")).setString("id", id);
+            stack.setTagCompound(nbt);
             subItems.add(stack);
         }
     }

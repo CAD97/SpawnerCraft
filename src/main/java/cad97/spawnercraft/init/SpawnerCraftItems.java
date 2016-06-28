@@ -22,7 +22,9 @@ import javax.annotation.Nonnull;
 public class SpawnerCraftItems {
 
     public static final ItemMobEssence mobEssence = new ItemMobEssence();
+    @SuppressWarnings("WeakerAccess")
     public static final ItemMobAgglomeration mobAgglomeration = new ItemMobAgglomeration();
+    @SuppressWarnings("WeakerAccess")
     public static final ItemMobSpirit mobSpirit = new ItemMobSpirit();
     public static final ItemMobRod mobRod = new ItemMobRod();
 
@@ -53,6 +55,9 @@ public class SpawnerCraftItems {
         itemColors.registerItemColorHandler(new IItemColor() {
             public int getColorFromItemstack(@Nonnull ItemStack stack, int tintIndex) {
                 EntityList.EntityEggInfo eggInfo = EntityList.ENTITY_EGGS.get(ItemMonsterPlacer.getEntityIdFromItem(stack));
+                if (eggInfo == null) {
+                    eggInfo = SpawnerCraftMobAlias.customEggs.get(ItemMonsterPlacer.getEntityIdFromItem(stack));
+                }
                 return eggInfo == null ? -1 : (tintIndex == 0 ? eggInfo.primaryColor : eggInfo.secondaryColor);
             }
         }, mobEssence, mobAgglomeration, mobSpirit);

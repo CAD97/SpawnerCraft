@@ -22,6 +22,14 @@ public class ConfigHandler {
     @SuppressWarnings("WeakerAccess")
     public static boolean dropsRequireFishing;
 
+    public static boolean witherSkeletonSoul;
+    public static boolean straySoul;
+    public static boolean huskSoul;
+    public static boolean elderGuardianSoul;
+    public static boolean donkeySoul;
+    public static boolean muleSoul;
+    public static boolean skeletonHorseSoul;
+
     public static void init(File configFile) {
         if (config == null) {
             config = new Configuration(configFile);
@@ -45,6 +53,21 @@ public class ConfigHandler {
                 "Is it possible to craft an Empty Monster Spawner from iron bars?").setRequiresMcRestart(true).getBoolean();
         dropsRequireFishing = config.get(Configuration.CATEGORY_GENERAL, "dropsRequireFishing", true,
                 "Do Mob Essence drops require the use of a Mob Fishing Pole?").getBoolean();
+
+        witherSkeletonSoul = config.get("Custom Souls", "witherSkeletonSoul", true,
+                "Is there a Mob Soul for Wither Skeletons?").setRequiresMcRestart(true).getBoolean();
+        straySoul = config.get("Custom Souls", "straySoul", false,
+                "Is there a Mob Soul for Strays?").setRequiresMcRestart(true).getBoolean();
+        huskSoul = config.get("Custom Souls", "huskSoul", false,
+                "Is there a Mob Soul for Husks?").setRequiresMcRestart(true).getBoolean();
+        elderGuardianSoul = config.get("Custom Souls", "elderGuardianSoul", false,
+                "Is there a Mob Soul for Elder Guardians?").setRequiresMcRestart(true).getBoolean();
+        donkeySoul = config.get("Custom Souls", "donkeySoul", false,
+                "Is there a Mob Soul for Donkeys?").setRequiresMcRestart(true).getBoolean();
+        muleSoul = config.get("Custom Souls", "muleSoul", false,
+                "Is there a Mob Soul for Mules?").setRequiresMcRestart(true).getBoolean();
+        skeletonHorseSoul = config.get("Custom Souls", "skeletonHorseSoul", false,
+                "Is there a Mob Soul for Skeleton Horses?").setRequiresMcRestart(true).getBoolean();
 
         if (config.hasChanged()) {
             config.save();
