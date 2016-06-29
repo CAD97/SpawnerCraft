@@ -30,27 +30,6 @@ public class SpawnerCraftMobAlias {
             aliasedIDs.put("WitherSkeleton", "Skeleton");
         }
 
-        if (ConfigHandler.straySoul && !EntityList.ENTITY_EGGS.containsKey("Stray")) {
-            NBTTagCompound stray = new NBTTagCompound();       // {
-            stray.setString("id", "Stray");                    //   id:"Stray",
-            stray.setByte("SkeletonType", (byte) 2);           //   SkeletonType:2b,
-            NBTTagList handItems = new NBTTagList();           //   HandItems:[
-            NBTTagCompound mainHand = new NBTTagCompound();    //     0:{
-            mainHand.setString("id", "minecraft:bow");         //       id:"minecraft:bow"
-            handItems.appendTag(mainHand);                     //     }
-            stray.setTag("HandItems", handItems);              //   ]
-            customNBT.put("Stray", stray);                     // }
-            aliasedIDs.put("Stray", "Skeleton");
-        }
-
-        if (ConfigHandler.huskSoul && !EntityList.ENTITY_EGGS.containsKey("Husk")) {
-            NBTTagCompound husk = new NBTTagCompound();        // {
-            husk.setString("id", "Husk");                      //   id:"Husk",
-            husk.setByte("ZombieType", (byte) 6);              //   ZombieType:6b
-            customNBT.put("Husk", husk);                       // }
-            aliasedIDs.put("Husk", "Zombie");
-        }
-
         if (ConfigHandler.elderGuardianSoul && !EntityList.ENTITY_EGGS.containsKey("ElderGuardian")) {
             NBTTagCompound elder = new NBTTagCompound();       // {
             elder.setString("id", "ElderGuardian");            //   id:"ElderGuardian",
@@ -75,14 +54,6 @@ public class SpawnerCraftMobAlias {
             aliasedIDs.put("Mule", "EntityHorse");
         }
 
-        if (ConfigHandler.skeletonHorseSoul && !EntityList.ENTITY_EGGS.containsKey("SkeletonHorse")) {
-            NBTTagCompound sHorse = new NBTTagCompound();      // {
-            sHorse.setString("id", "SkeletonHorse");           //   id:"SkeletonHorse",
-            sHorse.setByte("Type", (byte) 4);                  //   Type:4b
-            customNBT.put("SkeletonHorse", sHorse);            // }
-            aliasedIDs.put("SkeletonHorse", "EntityHorse");
-        }
-
         registerEggInfo();
 
         LogHelper.logInfo("Mob Aliases registered.");
@@ -94,12 +65,6 @@ public class SpawnerCraftMobAlias {
         if (ConfigHandler.witherSkeletonSoul) {
             customEggs.put("WitherSkeleton", new EntityList.EntityEggInfo(null, 0x131313, 0x3D3D3D));
         }
-        if (ConfigHandler.straySoul) {
-            customEggs.put("Stray", new EntityList.EntityEggInfo(null, 0x6F6F6F, 0XB8B8B8));
-        }
-        if (ConfigHandler.huskSoul) {
-            customEggs.put("Husk", new EntityList.EntityEggInfo(null, 0x71695B, 0xB5A175));
-        }
         if (ConfigHandler.elderGuardianSoul) {
             customEggs.put("ElderGuardian", new EntityList.EntityEggInfo(null, 0xC0BEAE, 0x5C5C75));
         }
@@ -108,9 +73,6 @@ public class SpawnerCraftMobAlias {
         }
         if (ConfigHandler.muleSoul) {
             customEggs.put("Mule", new EntityList.EntityEggInfo(null, 0x190200, 0x402817));
-        }
-        if (ConfigHandler.skeletonHorseSoul) {
-            customEggs.put("SkeletonHorse", new EntityList.EntityEggInfo(null, 0x61614A, 0xB4B4AA));
         }
     }
 }

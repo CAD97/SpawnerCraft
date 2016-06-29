@@ -23,12 +23,9 @@ public class ConfigHandler {
     public static boolean dropsRequireFishing;
 
     public static boolean witherSkeletonSoul;
-    public static boolean straySoul;
-    public static boolean huskSoul;
     public static boolean elderGuardianSoul;
     public static boolean donkeySoul;
     public static boolean muleSoul;
-    public static boolean skeletonHorseSoul;
 
     public static void init(File configFile) {
         if (config == null) {
@@ -57,18 +54,12 @@ public class ConfigHandler {
 
         witherSkeletonSoul = config.get("Custom Souls", "witherSkeletonSoul", true,
                 "Is there a Mob Soul for Wither Skeletons?").setRequiresMcRestart(true).getBoolean();
-        straySoul = config.get("Custom Souls", "straySoul", true,
-                "Is there a Mob Soul for Strays?").setRequiresMcRestart(true).getBoolean();
-        huskSoul = config.get("Custom Souls", "huskSoul", true,
-                "Is there a Mob Soul for Husks?").setRequiresMcRestart(true).getBoolean();
         elderGuardianSoul = config.get("Custom Souls", "elderGuardianSoul", false,
                 "Is there a Mob Soul for Elder Guardians?").setRequiresMcRestart(true).getBoolean();
         donkeySoul = config.get("Custom Souls", "donkeySoul", true,
                 "Is there a Mob Soul for Donkeys?").setRequiresMcRestart(true).getBoolean();
         muleSoul = config.get("Custom Souls", "muleSoul", true,
                 "Is there a Mob Soul for Mules?").setRequiresMcRestart(true).getBoolean();
-        skeletonHorseSoul = config.get("Custom Souls", "skeletonHorseSoul", false,
-                "Is there a Mob Soul for Skeleton Horses?").setRequiresMcRestart(true).getBoolean();
 
         if (config.hasChanged()) {
             config.save();

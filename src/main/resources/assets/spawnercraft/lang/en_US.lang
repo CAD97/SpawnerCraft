@@ -6,3 +6,8 @@ item.spawnercraft.mobRod.name=Mob Fishing Rod
 tile.spawnercraft.mobCage.name=Empty Spawner
 
 itemGroup.spawnercraft.tab=SpawnerCraft
+
+entity.Donkey.name=Donkey
+entity.Mule.name=Mule
+entity.WitherSkeleton.name=Wither Skeleton
+entity.ElderGuardian.name=Elder Guardian

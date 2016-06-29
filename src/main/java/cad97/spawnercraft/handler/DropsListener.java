@@ -7,7 +7,8 @@ import net.minecraft.block.BlockMobSpawner;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
-import net.minecraft.entity.monster.*;
+import net.minecraft.entity.monster.EntityGuardian;
+import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.passive.HorseType;
 import net.minecraft.entity.player.EntityPlayer;
@@ -41,14 +42,8 @@ public class DropsListener {
                 String customID = null;
 
                 if (ConfigHandler.witherSkeletonSoul && entity instanceof EntitySkeleton &&
-                        ((EntitySkeleton) entity).getSkeletonType() == SkeletonType.WITHER) {
+                        ((EntitySkeleton) entity).getSkeletonType() == 1) {
                     customID = "WitherSkeleton";
-                } else if (ConfigHandler.straySoul && entity instanceof EntitySkeleton &&
-                        ((EntitySkeleton) entity).getSkeletonType() == SkeletonType.STRAY) {
-                    customID = "Stray";
-                } else if (ConfigHandler.huskSoul && entity instanceof EntityZombie &&
-                        ((EntityZombie) entity).getZombieType() == ZombieType.HUSK) {
-                    customID = "Husk";
                 } else if (ConfigHandler.elderGuardianSoul && entity instanceof EntityGuardian &&
                         ((EntityGuardian) entity).isElder()) {
                     customID = "ElderGuardian";
@@ -58,9 +53,6 @@ public class DropsListener {
                 } else if (ConfigHandler.muleSoul && entity instanceof EntityHorse &&
                         ((EntityHorse) entity).getType() == HorseType.MULE) {
                     customID = "Mule";
-                } else if (ConfigHandler.skeletonHorseSoul && entity instanceof EntityHorse &&
-                        ((EntityHorse) entity).getType() == HorseType.SKELETON) {
-                    customID = "SkeletonHorse";
                 }
 
                 if (customID != null) {
