@@ -41,13 +41,13 @@ public class DropsListener {
                 String customID = null;
 
                 if (ConfigHandler.witherSkeletonSoul && entity instanceof EntitySkeleton &&
-                        ((EntitySkeleton) entity).func_189771_df() == SkeletonType.WITHER) {
+                        ((EntitySkeleton) entity).getSkeletonType() == SkeletonType.WITHER) {
                     customID = "WitherSkeleton";
                 } else if (ConfigHandler.straySoul && entity instanceof EntitySkeleton &&
-                        ((EntitySkeleton) entity).func_189771_df() == SkeletonType.STRAY) {
+                        ((EntitySkeleton) entity).getSkeletonType() == SkeletonType.STRAY) {
                     customID = "Stray";
                 } else if (ConfigHandler.huskSoul && entity instanceof EntityZombie &&
-                        ((EntityZombie) entity).func_189777_di() == ZombieType.HUSK) {
+                        ((EntityZombie) entity).getZombieType() == ZombieType.HUSK) {
                     customID = "Husk";
                 } else if (ConfigHandler.elderGuardianSoul && entity instanceof EntityGuardian &&
                         ((EntityGuardian) entity).isElder()) {
