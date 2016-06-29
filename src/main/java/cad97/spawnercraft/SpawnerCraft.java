@@ -9,7 +9,8 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 @Mod(modid = SpawnerCraft.MOD_ID, name = SpawnerCraft.MOD_NAME, version = SpawnerCraft.VERSION,
-        guiFactory = SpawnerCraft.GUI_FACTORY_CLASS, dependencies = SpawnerCraft.DEPENDENCIES)
+        guiFactory = SpawnerCraft.GUI_FACTORY_CLASS, dependencies = SpawnerCraft.DEPENDENCIES,
+        acceptedMinecraftVersions = "[1.10]")
 public class SpawnerCraft {
 
     public static final String MOD_ID = "spawnercraft";
@@ -17,7 +18,7 @@ public class SpawnerCraft {
 
     static final String VERSION = "3.0";
     static final String GUI_FACTORY_CLASS = "cad97.spawnercraft.client.gui.GuiFactory"; // GuiFactory.class.getCanonicalName()
-    static final String DEPENDENCIES = "required-after:Forge@[12.18]";
+    static final String DEPENDENCIES = "required-after:Forge@[12.18.0.2000,);";
 
     @Mod.Instance
     static SpawnerCraft instance;
