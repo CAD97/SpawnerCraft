@@ -22,7 +22,7 @@ version = version_major + '.' + version_minor + '.' + version_patch
 //noinspection GroovyUnusedAssignment
 group = "cad97.spawnercraft" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 //noinspection GroovyUnusedAssignment
-archivesBaseName = "SpawnerCraft" + mcversion
+archivesBaseName = "SpawnerCraft " + mcversion
 
 minecraft {
     version = mcversion + '-' + forgeversion
