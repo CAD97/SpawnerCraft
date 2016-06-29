@@ -29,7 +29,7 @@ or even obtain a non-standard spawner that is not available in a survival map no
  1. Watch [this wonderful video by cpw](https://youtu.be/4PFRS8U-yxM)
  2. Go ahead and watch all of his videos on using IntelliJ IDEA for Minecraft Modding
  3. Make the switch to using IntelliJ IDEA, it's much better than using Eclipse
- 4. Follow the steps from the video to clone and set up Spawnercraft git@github.com:CAD97/SpawnerCraft.git
+ 4. Follow the steps from the video to clone and set up Spawnercraft. The clone URL is available in the button labeled Clone or Download.
 
 ## Contributing
 
