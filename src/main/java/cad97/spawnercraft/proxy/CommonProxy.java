@@ -28,10 +28,8 @@ abstract class CommonProxy implements IProxy {
     @Override
     @OverridingMethodsMustInvokeSuper
     public void init(FMLInitializationEvent event) {
-        SpawnerCraftRecipes.registerRecipes();
         SpawnerCraftMobAlias.registerMobAliases();
-        SpawnerCraftMobAlias.registerEggInfo();
-        MinecraftForge.EVENT_BUS.register(DropsListener.instance);
+        SpawnerCraftRecipes.registerRecipes();
     }
 
     @Override

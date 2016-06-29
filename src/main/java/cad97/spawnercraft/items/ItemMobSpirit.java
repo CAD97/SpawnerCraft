@@ -6,6 +6,7 @@ import cad97.spawnercraft.init.SpawnerCraftMobAlias;
 import net.minecraft.block.BlockFence;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -31,18 +32,18 @@ public class ItemMobSpirit extends ItemMobSoul {
 
     @Nonnull
     @Override
-    // Copied from ItemMonsterPlacer
+    // A lot is taken from ItemMonsterPlacer
     public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumHand hand,
                                       EnumFacing facing, float hitX, float hitY, float hitZ) {
-        if (world.isRemote) {
+        String id = ItemMonsterPlacer.getEntityIdFromItem(stack);
+        if (id == null || !(EntityList.ENTITY_EGGS.containsKey(id) || SpawnerCraftMobAlias.customEggs.containsKey(id))) {
+            return EnumActionResult.FAIL;
+        } else if (world.isRemote) {
             return EnumActionResult.SUCCESS;
         } else if (!player.canPlayerEdit(pos.offset(facing), facing, stack)) {
             return EnumActionResult.FAIL;
         } else {
             IBlockState state = world.getBlockState(pos);
-
-            String id = ItemMonsterPlacer.getEntityIdFromItem(stack);
-            assert id != null;
 
             // Create mob spawner when clicking on empty mob spawner
             if (state.getBlock() == SpawnerCraftBlocks.mobCage) {

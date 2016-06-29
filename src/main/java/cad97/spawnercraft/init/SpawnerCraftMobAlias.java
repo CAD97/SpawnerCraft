@@ -83,12 +83,14 @@ public class SpawnerCraftMobAlias {
             aliasedIDs.put("SkeletonHorse", "EntityHorse");
         }
 
+        registerEggInfo();
+
         LogHelper.logInfo("Mob Aliases registered.");
         LogHelper.logDebug("These are only usable internally.");
     }
 
     @SuppressWarnings("ConstantConditions")
-    public static void registerEggInfo() {
+    private static void registerEggInfo() {
         if (ConfigHandler.witherSkeletonSoul) {
             customEggs.put("WitherSkeleton", new EntityList.EntityEggInfo(null, 0x131313, 0x3D3D3D));
         }
