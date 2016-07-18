@@ -70,7 +70,7 @@ public class DropsListener {
                 } else {
                     ItemMobSoul.applyEntityIdToItemStack(stack, EntityList.getEntityString(entity));
                 }
-                
+
                 entity.entityDropItem(stack, 0.0F);
             }
         }
@@ -81,11 +81,10 @@ public class DropsListener {
         if (event.getState().getBlock() instanceof BlockMobSpawner) {
             // event.isSilkTouching() is only true when the block is silk-touch-able,
             // so we need to get the silk touch modifier manually.
-            if (!ConfigHandler.spawnerDropRequireSilk || (
-                    event.getHarvester() != null &&
-                            EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH,
-                                    event.getHarvester().getHeldItemMainhand()) > 0
-            )) {
+            if (event.getHarvester() != null &&
+                    EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH,
+                            event.getHarvester().getHeldItemMainhand()) > ConfigHandler.spawnerDropSilkLevel
+                    ) {
                 event.getDrops().add(new ItemStack(SpawnerCraftBlocks.mobCage));
             }
         }

@@ -17,7 +17,7 @@ public class ConfigHandler {
     public static Configuration config;
 
     @SuppressWarnings("WeakerAccess")
-    public static boolean spawnerDropRequireSilk;
+    public static int spawnerDropSilkLevel;
     public static boolean spawnerCraftable;
     @SuppressWarnings("WeakerAccess")
     public static boolean dropsRequireFishing;
@@ -48,8 +48,9 @@ public class ConfigHandler {
     }
 
     private static void loadConfig() {
-        spawnerDropRequireSilk = config.get(Configuration.CATEGORY_GENERAL, "spawnerDropRequireSilk", false,
-                "Does a Mob Spawner require Silk Touch to drop a Mob Cage?").getBoolean(false);
+        spawnerDropSilkLevel = config.get(Configuration.CATEGORY_GENERAL, "spawnerDropSilkLevel", 0,
+                "Required silk touch level to drop Empty Spawners from normal Mob Spawners.\n" +
+                        "Set higher than obtainable silk touch (vanilla: >1) to disable.").getInt(0);
         spawnerCraftable = config.get(Configuration.CATEGORY_GENERAL, "spawnerCraftable", false,
                 "Is it possible to craft an Empty Monster Spawner from iron bars?").setRequiresMcRestart(true).getBoolean();
         dropsRequireFishing = config.get(Configuration.CATEGORY_GENERAL, "dropsRequireFishing", true,
