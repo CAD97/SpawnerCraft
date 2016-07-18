@@ -3,6 +3,7 @@ package cad97.spawnercraft.handler;
 import cad97.spawnercraft.init.SpawnerCraftBlocks;
 import cad97.spawnercraft.init.SpawnerCraftItems;
 import cad97.spawnercraft.init.SpawnerCraftMobAlias;
+import cad97.spawnercraft.items.ItemMobSoul;
 import net.minecraft.block.BlockMobSpawner;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -12,7 +13,6 @@ import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.passive.HorseType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Enchantments;
-import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
@@ -68,7 +68,7 @@ public class DropsListener {
                     //noinspection ConstantConditions
                     stack.getTagCompound().setTag("EntityTag", SpawnerCraftMobAlias.customNBT.get(customID));
                 } else {
-                    ItemMonsterPlacer.applyEntityIdToItemStack(stack, EntityList.getEntityString(entity));
+                    ItemMobSoul.applyEntityIdToItemStack(stack, EntityList.getEntityString(entity));
                 }
                 
                 entity.entityDropItem(stack, 0.0F);
