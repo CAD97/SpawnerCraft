@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * Base class for mobEssence, mobAgglomeration, and mobSpirit
  */
-abstract class ItemMobSoul extends SpawnerCraftItem {
+public abstract class ItemMobSoul extends SpawnerCraftItem {
     ItemMobSoul() {
         super();
         setMaxStackSize(64);
@@ -43,7 +43,7 @@ abstract class ItemMobSoul extends SpawnerCraftItem {
     public void getSubItems(@Nonnull Item item, @Nonnull CreativeTabs tab, @Nonnull List<ItemStack> subItems) {
         for (EntityList.EntityEggInfo egg : EntityList.ENTITY_EGGS.values()) {
             ItemStack stack = new ItemStack(item);
-            ItemMonsterPlacer.applyEntityIdToItemStack(stack, egg.spawnedID);
+            ItemMobSoul.applyEntityIdToItemStack(stack, egg.spawnedID);
             subItems.add(stack);
         }
         for (String id : SpawnerCraftMobAlias.customEggs.keySet()) {
@@ -55,5 +55,16 @@ abstract class ItemMobSoul extends SpawnerCraftItem {
             stack.setTagCompound(nbt);
             subItems.add(stack);
         }
+    }
+
+    // Stolen from @SideOnly(CLIENT) in ItemMonsterPlacer. I need to access it on server side
+    // to enable applying entity id to dropped item stacks
+    public static void applyEntityIdToItemStack(ItemStack stack, String entityId) {
+        NBTTagCompound nbttagcompound = stack.hasTagCompound() ? stack.getTagCompound() : new NBTTagCompound();
+        assert nbttagcompound != null;
+        NBTTagCompound nbttagcompound1 = new NBTTagCompound();
+        nbttagcompound1.setString("id", entityId);
+        nbttagcompound.setTag("EntityTag", nbttagcompound1);
+        stack.setTagCompound(nbttagcompound);
     }
 }
