@@ -18,7 +18,7 @@ public class SpawnerCraft {
 
     static final String VERSION = "3.1";
     static final String GUI_FACTORY_CLASS = "cad97.spawnercraft.client.gui.GuiFactory"; // GuiFactory.class.getCanonicalName()
-    static final String DEPENDENCIES = "required-after:Forge@[12.18.0.2002,);";
+    static final String DEPENDENCIES = "required-after:Forge@[12.18.2.2097,);";
 
     @Mod.Instance
     static SpawnerCraft instance;
