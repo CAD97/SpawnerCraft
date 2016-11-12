@@ -4,7 +4,7 @@
     "modid": "spawnercraft",
     "name": "SpawnerCraft",
     "description": "SpawnerCraft allows a player to create their own spawners wherever they wish, while still requiring the player to find naturally generated spawners, therefor keeping the elements of exploration and reward in vanilla, while adding the possibility to move and create vanilla-friendly spawners in powerful ways not normally achievable.",
-    "version": "3.2",
+    "version": "3.3.1",
     "mcversion": "1.10.2",
     "url": "https://github.com/CAD97/SpawnerCraft",
     "updateUrl": "",
