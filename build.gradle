@@ -1,28 +1,25 @@
 buildscript {
     repositories {
         jcenter()
-        maven {
-            name = "forge"
-            url = "http://files.minecraftforge.net/maven"
-        }
+        maven { url = "http://files.minecraftforge.net/maven" }
     }
-    //noinspection GroovyAssignabilityCheck
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
     }
 }
-
-plugins {
-
-}
-
 apply plugin: 'net.minecraftforge.gradle.forge'
+//Only edit below this line, the above code adds and enables the nessasary things for Forge to be setup.
 
 version = version_major + '.' + version_minor + '.' + version_patch
 //noinspection GroovyUnusedAssignment
 group = "cad97.spawnercraft" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 //noinspection GroovyUnusedAssignment
 archivesBaseName = "SpawnerCraft " + mcversion
+
+targetCompatibility = "1.8"
+compileJava {
+    sourceCompatibility = targetCompatibility = "1.8"
+}
 
 minecraft {
     version = mcversion + '-' + forgeversion
