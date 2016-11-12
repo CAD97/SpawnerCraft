@@ -77,7 +77,6 @@ public class DropsListener {
 
     @SubscribeEvent
     public void onBlockDrops(BlockEvent.HarvestDropsEvent event) {
-        System.out.println(event.getState().getBlock());
         if (event.getState().getBlock() instanceof BlockMobSpawner) {
             // event.isSilkTouching() is only true when the block is silk-touch-able,
             // so we need to get the silk touch modifier manually.
