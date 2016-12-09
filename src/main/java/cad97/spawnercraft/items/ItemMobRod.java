@@ -13,8 +13,8 @@ public class ItemMobRod extends ItemSword /*, SpawnerCraftItem */ {
     public ItemMobRod() {
         super(ToolMaterial.IRON);
         setCreativeTab(SpawnerCraftTabs.tab);
-        setUnlocalizedName("mobRod");
-        setRegistryName(SpawnerCraft.MOD_ID, "mobRod");
+        setUnlocalizedName("mob_rod");
+        setRegistryName(SpawnerCraft.MOD_ID, "mob_rod");
     }
 
     @Override

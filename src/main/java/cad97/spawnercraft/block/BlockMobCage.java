@@ -16,8 +16,8 @@ public class BlockMobCage extends SpawnerCraftBlock {
 
         blockHardness = 5.0F;
         blockSoundType = SoundType.METAL;
-        setUnlocalizedName("mobCage");
-        setRegistryName(MOD_ID, "mobCage");
+        setUnlocalizedName("mob_cage");
+        setRegistryName(MOD_ID, "mob_cage");
         setHarvestLevel("pickaxe", Item.ToolMaterial.STONE.getHarvestLevel());
     }
 

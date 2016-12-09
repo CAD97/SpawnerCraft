@@ -6,61 +6,53 @@ import cad97.spawnercraft.items.ItemMobRod;
 import cad97.spawnercraft.items.ItemMobSpirit;
 import cad97.spawnercraft.utility.LogHelper;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.entity.EntityList;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemMonsterPlacer;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nonnull;
-
 public class SpawnerCraftItems {
 
-    public static final ItemMobEssence mobEssence = new ItemMobEssence();
+    public static final ItemMobEssence MOB_ESSENCE = new ItemMobEssence();
     @SuppressWarnings("WeakerAccess")
-    public static final ItemMobAgglomeration mobAgglomeration = new ItemMobAgglomeration();
+    public static final ItemMobAgglomeration MOB_AGGLOMERATION = new ItemMobAgglomeration();
     @SuppressWarnings("WeakerAccess")
-    public static final ItemMobSpirit mobSpirit = new ItemMobSpirit();
-    public static final ItemMobRod mobRod = new ItemMobRod();
+    public static final ItemMobSpirit MOB_SPIRIT = new ItemMobSpirit();
+    public static final ItemMobRod MOB_ROD = new ItemMobRod();
 
     public static void registerItems() {
-        GameRegistry.register(mobEssence);
-        GameRegistry.register(mobAgglomeration);
-        GameRegistry.register(mobSpirit);
-        GameRegistry.register(mobRod);
-        GameRegistry.register(new ItemBlock(SpawnerCraftBlocks.mobCage), SpawnerCraftBlocks.mobCage.getRegistryName());
+        GameRegistry.register(MOB_ESSENCE);
+        GameRegistry.register(MOB_AGGLOMERATION);
+        GameRegistry.register(MOB_SPIRIT);
+        GameRegistry.register(MOB_ROD);
+        GameRegistry.register(new ItemBlock(SpawnerCraftBlocks.MOB_CAGE), SpawnerCraftBlocks.MOB_CAGE.getRegistryName());
         LogHelper.logInfo("Items initialized.");
     }
 
     @SideOnly(Side.CLIENT)
     public static void registerModels() {
-        ModelLoader.setCustomModelResourceLocation(mobEssence,
-                0, new ModelResourceLocation(mobEssence.getRegistryName(), "inventory"));
-        ModelLoader.setCustomModelResourceLocation(mobAgglomeration,
-                0, new ModelResourceLocation(mobAgglomeration.getRegistryName(), "inventory"));
-        ModelLoader.setCustomModelResourceLocation(mobSpirit,
-                0, new ModelResourceLocation(mobSpirit.getRegistryName(), "inventory"));
-        ModelLoader.setCustomModelResourceLocation(mobRod,
-                0, new ModelResourceLocation(mobRod.getRegistryName(), "inventory"));
+        ModelLoader.setCustomModelResourceLocation(MOB_ESSENCE, 0,
+                new ModelResourceLocation(MOB_ESSENCE.getRegistryName(), "inventory"));
+        System.out.println(MOB_ESSENCE.getRegistryName());
+        ModelLoader.setCustomModelResourceLocation(MOB_AGGLOMERATION, 0,
+                new ModelResourceLocation(MOB_AGGLOMERATION.getRegistryName(), "inventory"));
+        ModelLoader.setCustomModelResourceLocation(MOB_SPIRIT, 0,
+                new ModelResourceLocation(MOB_SPIRIT.getRegistryName(), "inventory"));
+        ModelLoader.setCustomModelResourceLocation(MOB_ROD, 0,
+                new ModelResourceLocation(MOB_ROD.getRegistryName(), "inventory"));
         LogHelper.logInfo("Item models initialized.");
     }
 
     @SideOnly(Side.CLIENT)
     public static void registerColors(ItemColors itemColors) {
-        itemColors.registerItemColorHandler(new IItemColor() {
-            public int getColorFromItemstack(@Nonnull ItemStack stack, int tintIndex) {
-                EntityList.EntityEggInfo eggInfo = EntityList.ENTITY_EGGS.get(ItemMonsterPlacer.getEntityIdFromItem(stack));
-                if (eggInfo == null) {
-                    eggInfo = SpawnerCraftMobAlias.customEggs.get(ItemMonsterPlacer.getEntityIdFromItem(stack));
-                }
-                return eggInfo == null ? -1 : (tintIndex == 0 ? eggInfo.primaryColor : eggInfo.secondaryColor);
-            }
-        }, mobEssence, mobAgglomeration, mobSpirit);
+        itemColors.registerItemColorHandler((stack, tintIndex) -> {
+            EntityList.EntityEggInfo eggInfo = EntityList.ENTITY_EGGS.get(ItemMonsterPlacer.getNamedIdFrom(stack));
+            return eggInfo == null ? -1 : (tintIndex == 0 ? eggInfo.primaryColor : eggInfo.secondaryColor);
+        }, MOB_ESSENCE, MOB_AGGLOMERATION, MOB_SPIRIT);
         LogHelper.logInfo("Item colors initialized.");
     }
 }

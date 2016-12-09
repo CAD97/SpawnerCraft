@@ -19,7 +19,7 @@ public class NBTPreservingShapedRecipe extends ShapedRecipes {
 
     static {
         RecipeSorter.register(SpawnerCraft.MOD_ID + ":nbtshaped", NBTPreservingShapedRecipe.class,
-                RecipeSorter.Category.SHAPED, "after:minecraft:shaped before:minecraft:shapeless");
+                RecipeSorter.Category.SHAPED, "after:minecraft:shaped");
     }
 
     public NBTPreservingShapedRecipe(int width, int height, ItemStack[] items, ItemStack output) {
@@ -28,10 +28,10 @@ public class NBTPreservingShapedRecipe extends ShapedRecipes {
 
     private NBTTagCompound matchingCompound = null;
 
+    @Nonnull
     @Override
     public ItemStack getRecipeOutput() {
         ItemStack output = super.getRecipeOutput();
-        assert output != null;
         output.setTagCompound(matchingCompound);
         return output;
     }
@@ -42,7 +42,7 @@ public class NBTPreservingShapedRecipe extends ShapedRecipes {
 
         for (int i = 0; i < inv.getSizeInventory(); ++i) {
             ItemStack itemStack = inv.getStackInSlot(i);
-            if (itemStack != null) {
+            if (!itemStack.isEmpty()) {
                 matchingCompound = itemStack.getTagCompound();
                 break;
             }
@@ -50,7 +50,7 @@ public class NBTPreservingShapedRecipe extends ShapedRecipes {
 
         for (int i = 0; i < inv.getSizeInventory(); ++i) {
             ItemStack itemStack = inv.getStackInSlot(i);
-            if (itemStack != null && !Objects.equal(itemStack.getTagCompound(), matchingCompound)) {
+            if (!Objects.equal(itemStack.getTagCompound(), matchingCompound)) {
                 return false;
             }
         }

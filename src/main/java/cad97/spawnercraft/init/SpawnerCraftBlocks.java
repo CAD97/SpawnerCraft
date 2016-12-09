@@ -12,18 +12,17 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class SpawnerCraftBlocks {
 
-    public static final Block mobCage = new BlockMobCage();
+    public static final Block MOB_CAGE = new BlockMobCage();
 
     public static void registerBlocks() {
-        GameRegistry.register(mobCage);
+        GameRegistry.register(MOB_CAGE);
         LogHelper.logInfo("Blocks initialized.");
     }
 
-    @SuppressWarnings("ConstantConditions")
     @SideOnly(Side.CLIENT)
     public static void registerModels() {
-        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(mobCage),
-                0, new ModelResourceLocation(mobCage.getRegistryName(), "inventory")
+        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(MOB_CAGE),
+                0, new ModelResourceLocation(MOB_CAGE.getRegistryName(), "inventory")
         );
         LogHelper.logInfo("Block models initialized.");
     }

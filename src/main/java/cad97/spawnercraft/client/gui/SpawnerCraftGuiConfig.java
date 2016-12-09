@@ -11,7 +11,6 @@ import net.minecraftforge.fml.client.config.IConfigElement;
 import java.util.ArrayList;
 import java.util.List;
 
-@SuppressWarnings("WeakerAccess")
 public class SpawnerCraftGuiConfig extends GuiConfig {
     public SpawnerCraftGuiConfig(GuiScreen guiScreen) {
         super(guiScreen,
@@ -23,7 +22,7 @@ public class SpawnerCraftGuiConfig extends GuiConfig {
     }
 
     private static List<IConfigElement> getConfigElements() {
-        List<IConfigElement> elements = new ArrayList<IConfigElement>();
+        List<IConfigElement> elements = new ArrayList<>();
         elements.addAll(new ConfigElement(ConfigHandler.config.getCategory(Configuration.CATEGORY_GENERAL)).getChildElements());
         elements.addAll(new ConfigElement(ConfigHandler.config.getCategory("Custom Souls")).getChildElements());
         return elements;

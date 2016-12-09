@@ -5,7 +5,7 @@ import cad97.spawnercraft.SpawnerCraft;
 public class ItemMobAgglomeration extends ItemMobSoul {
     public ItemMobAgglomeration() {
         super();
-        setUnlocalizedName("mobAgglomeration");
-        setRegistryName(SpawnerCraft.MOD_ID, "mobAgglomeration");
+        setUnlocalizedName("mob_agglomeration");
+        setRegistryName(SpawnerCraft.MOD_ID, "mob_agglomeration");
     }
 }

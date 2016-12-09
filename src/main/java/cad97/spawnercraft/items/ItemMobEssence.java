@@ -5,7 +5,7 @@ import cad97.spawnercraft.SpawnerCraft;
 public class ItemMobEssence extends ItemMobSoul {
     public ItemMobEssence() {
         super();
-        setUnlocalizedName("mobEssence");
-        setRegistryName(SpawnerCraft.MOD_ID, "mobEssence");
+        setUnlocalizedName("mob_essence");
+        setRegistryName(SpawnerCraft.MOD_ID, "mob_essence");
     }
 }

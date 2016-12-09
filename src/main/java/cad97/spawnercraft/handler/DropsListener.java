@@ -2,18 +2,15 @@ package cad97.spawnercraft.handler;
 
 import cad97.spawnercraft.init.SpawnerCraftBlocks;
 import cad97.spawnercraft.init.SpawnerCraftItems;
-import cad97.spawnercraft.init.SpawnerCraftMobAlias;
 import cad97.spawnercraft.items.ItemMobSoul;
 import net.minecraft.block.BlockMobSpawner;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
-import net.minecraft.entity.monster.*;
-import net.minecraft.entity.passive.EntityHorse;
-import net.minecraft.entity.passive.HorseType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Enchantments;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -37,50 +34,19 @@ public class DropsListener {
         Entity sourceOfDamage = event.getSource().getSourceOfDamage();
         if (sourceOfDamage instanceof EntityPlayer) {
             ItemStack heldItem = ((EntityPlayer) sourceOfDamage).getHeldItemMainhand();
-            if ((heldItem != null && heldItem.getItem() == SpawnerCraftItems.mobRod) ||
-                    !ConfigHandler.dropsRequireFishing) {
+            if (heldItem.getItem() == SpawnerCraftItems.MOB_ROD || !ConfigHandler.dropsRequireFishing) {
                 dropFor(event.getEntity());
             }
         }
     }
 
     private void dropFor(Entity entity) {
-        String entityString = getCustomIdFor(entity);
-        ItemStack stack = new ItemStack(SpawnerCraftItems.mobEssence);
-        if (EntityList.ENTITY_EGGS.containsKey(entityString) ||
-                SpawnerCraftMobAlias.customEggs.containsKey(entityString)) {
+        ResourceLocation entityString = EntityList.getKey(entity);
+        ItemStack stack = new ItemStack(SpawnerCraftItems.MOB_ESSENCE);
+        if (EntityList.ENTITY_EGGS.containsKey(entityString)) {
             ItemMobSoul.applyEntityIdToItemStack(stack, entityString);
             entity.entityDropItem(stack, 0.0F);
         }
-    }
-
-    private String getCustomIdFor(Entity entity) {
-        String entityString = EntityList.getEntityString(entity);
-        if (entityEggModSupport.containsKey(EntityList.getEntityString(entity))) {
-            entityString = entityEggModSupport.get(EntityList.getEntityString(entity));
-        } else if (ConfigHandler.witherSkeletonSoul && entity instanceof EntitySkeleton &&
-                ((EntitySkeleton) entity).getSkeletonType() == SkeletonType.WITHER) {
-            entityString = "WitherSkeleton";
-        } else if (ConfigHandler.straySoul && entity instanceof EntitySkeleton &&
-                ((EntitySkeleton) entity).getSkeletonType() == SkeletonType.STRAY) {
-            entityString = "Stray";
-        } else if (ConfigHandler.huskSoul && entity instanceof EntityZombie &&
-                ((EntityZombie) entity).getZombieType() == ZombieType.HUSK) {
-            entityString = "Husk";
-        } else if (ConfigHandler.elderGuardianSoul && entity instanceof EntityGuardian &&
-                ((EntityGuardian) entity).isElder()) {
-            entityString = "ElderGuardian";
-        } else if (ConfigHandler.donkeySoul && entity instanceof EntityHorse &&
-                ((EntityHorse) entity).getType() == HorseType.DONKEY) {
-            entityString = "Donkey";
-        } else if (ConfigHandler.muleSoul && entity instanceof EntityHorse &&
-                ((EntityHorse) entity).getType() == HorseType.MULE) {
-            entityString = "Mule";
-        } else if (ConfigHandler.skeletonHorseSoul && entity instanceof EntityHorse &&
-                ((EntityHorse) entity).getType() == HorseType.SKELETON) {
-            entityString = "SkeletonHorse";
-        }
-        return entityString;
     }
 
     @SubscribeEvent
@@ -92,7 +58,7 @@ public class DropsListener {
                     EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH,
                             event.getHarvester().getHeldItemMainhand()) >= ConfigHandler.spawnerDropSilkLevel
                     ) {
-                event.getDrops().add(new ItemStack(SpawnerCraftBlocks.mobCage));
+                event.getDrops().add(new ItemStack(SpawnerCraftBlocks.MOB_CAGE));
             }
         }
     }

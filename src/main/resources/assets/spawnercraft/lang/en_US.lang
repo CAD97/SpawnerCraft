@@ -1,8 +1,8 @@
-item.spawnercraft.mobEssence.name=Essence of %s
-item.spawnercraft.mobAgglomeration.name=Agglomeration of %s
-item.spawnercraft.mobSpirit.name=Spirit of %s
-item.spawnercraft.mobRod.name=Mob Fishing Rod
+item.spawnercraft.mob_essence.name=Essence of %s
+item.spawnercraft.mob_agglomeration.name=Agglomeration of %s
+item.spawnercraft.mob_spirit.name=Spirit of %s
+item.spawnercraft.mob_rod.name=Mob Fishing Rod
 
-tile.spawnercraft.mobCage.name=Empty Spawner
+tile.spawnercraft.mob_cage.name=Empty Spawner
 
 itemGroup.spawnercraft.tab=SpawnerCraft

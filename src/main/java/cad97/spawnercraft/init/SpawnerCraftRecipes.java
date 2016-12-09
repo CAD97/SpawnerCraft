@@ -10,21 +10,21 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class SpawnerCraftRecipes {
     public static void registerRecipes() {
-        ItemStack essenceStack = new ItemStack(SpawnerCraftItems.mobEssence);
+        ItemStack essenceStack = new ItemStack(SpawnerCraftItems.MOB_ESSENCE);
         GameRegistry.addRecipe(new NBTPreservingShapedRecipe(
                 2, 2,
                 new ItemStack[]{essenceStack, essenceStack, essenceStack, essenceStack},
-                new ItemStack(SpawnerCraftItems.mobAgglomeration)
+                new ItemStack(SpawnerCraftItems.MOB_AGGLOMERATION)
         ));
-        ItemStack agglomerationStack = new ItemStack(SpawnerCraftItems.mobAgglomeration);
+        ItemStack agglomerationStack = new ItemStack(SpawnerCraftItems.MOB_AGGLOMERATION);
         GameRegistry.addRecipe(new NBTPreservingShapedRecipe(
                 2, 2,
                 new ItemStack[]{agglomerationStack, agglomerationStack, agglomerationStack, agglomerationStack},
-                new ItemStack(SpawnerCraftItems.mobSpirit)
+                new ItemStack(SpawnerCraftItems.MOB_SPIRIT)
         ));
         if (ConfigHandler.spawnerCraftable) {
             GameRegistry.addShapedRecipe(
-                    new ItemStack(SpawnerCraftBlocks.mobCage),
+                    new ItemStack(SpawnerCraftBlocks.MOB_CAGE),
                     "III",
                     "I I",
                     "III",
@@ -32,11 +32,11 @@ public class SpawnerCraftRecipes {
             );
         }
         GameRegistry.addShapedRecipe(
-                new ItemStack(SpawnerCraftItems.mobRod),
+                new ItemStack(SpawnerCraftItems.MOB_ROD),
                 "F",
                 "S",
                 'F', new ItemStack(Items.FISHING_ROD),
-                'S', new ItemStack(SpawnerCraftBlocks.mobCage)
+                'S', new ItemStack(SpawnerCraftBlocks.MOB_CAGE)
         );
         LogHelper.logInfo("Recipes registered.");
     }

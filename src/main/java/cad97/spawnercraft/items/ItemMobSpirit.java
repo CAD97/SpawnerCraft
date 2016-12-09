@@ -2,8 +2,7 @@ package cad97.spawnercraft.items;
 
 import cad97.spawnercraft.SpawnerCraft;
 import cad97.spawnercraft.init.SpawnerCraftBlocks;
-import cad97.spawnercraft.init.SpawnerCraftMobAlias;
-import net.minecraft.block.BlockFence;
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
@@ -12,31 +11,35 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.MobSpawnerBaseLogic;
 import net.minecraft.tileentity.TileEntityMobSpawner;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
+import java.util.List;
+import java.util.Objects;
 
 public class ItemMobSpirit extends ItemMobSoul {
     public ItemMobSpirit() {
         super();
-        setUnlocalizedName("mobSpirit");
-        setRegistryName(SpawnerCraft.MOD_ID, "mobSpirit");
+        setUnlocalizedName("mob_spirit");
+        setRegistryName(SpawnerCraft.MOD_ID, "mob_spirit");
     }
 
     @Nonnull
     @Override
-    // A lot is taken from ItemMonsterPlacer
-    public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumHand hand,
-                                      EnumFacing facing, float hitX, float hitY, float hitZ) {
-        String id = ItemMonsterPlacer.getEntityIdFromItem(stack);
-        if (id == null || !(EntityList.ENTITY_EGGS.containsKey(id) || SpawnerCraftMobAlias.customEggs.containsKey(id))) {
+    public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos,
+                                      EnumHand hand, EnumFacing facing,
+                                      float hitX, float hitY, float hitZ) {
+        ItemStack stack = player.getHeldItem(hand);
+        ResourceLocation id = ItemMonsterPlacer.getNamedIdFrom(stack);
+        if (id == null || !EntityList.ENTITY_EGGS.containsKey(id)) {
             return EnumActionResult.FAIL;
         } else if (world.isRemote) {
             return EnumActionResult.SUCCESS;
@@ -44,55 +47,38 @@ public class ItemMobSpirit extends ItemMobSoul {
             return EnumActionResult.FAIL;
         } else {
             IBlockState state = world.getBlockState(pos);
+            Block block = state.getBlock();
 
             // Create mob spawner when clicking on empty mob spawner
-            if (state.getBlock() == SpawnerCraftBlocks.mobCage) {
+            if (block == SpawnerCraftBlocks.MOB_CAGE) {
                 world.setBlockState(pos, Blocks.MOB_SPAWNER.getDefaultState());
                 TileEntityMobSpawner spawner = (TileEntityMobSpawner) world.getTileEntity(pos);
+                Objects.requireNonNull(spawner);
 
-                assert spawner != null;
-                MobSpawnerBaseLogic mobspawnerbaselogic = spawner.getSpawnerBaseLogic();
-                if (SpawnerCraftMobAlias.aliasedIDs.containsKey(id)) {
-                    // It's hacky to write the spawner using NBT
-                    // But it's Minecraft-y because it's similar to commands
-                    // And it's more consistent than reflecting my way in
-                    NBTTagCompound nbt = new NBTTagCompound();
-                    NBTTagCompound spawnData = SpawnerCraftMobAlias.customNBT.get(id);
-                    spawnData.setString("id", SpawnerCraftMobAlias.aliasedIDs.get(id));
-                    nbt.setTag("SpawnData", spawnData);
-                    mobspawnerbaselogic.readFromNBT(nbt);
-                } else {
-                    mobspawnerbaselogic.setEntityName(id);
-                }
+                MobSpawnerBaseLogic logic = spawner.getSpawnerBaseLogic();
+                logic.setEntityId(ItemMonsterPlacer.getNamedIdFrom(stack));
                 spawner.markDirty();
                 world.notifyBlockUpdate(pos, state, state, 3);
 
                 if (!player.capabilities.isCreativeMode) {
-                    --stack.stackSize;
+                    stack.shrink(1);
                 }
-
                 return EnumActionResult.SUCCESS;
             }
 
-            if (state.getBlock() == Blocks.MOB_SPAWNER) {
-                // I'd like to change the entity in the spawner
-                // IF AND ONLY IF the entity isn't already what the MobSpirit is
-                // Unfortunately, the Spawner isn't telling :P
+            if (block == Blocks.MOB_SPAWNER) {
+                // Overwriting spawners is dangerous;
+                // it could be pulling from a rotating set.
+                // Fail fast is the most consistent behavior.
                 return EnumActionResult.FAIL;
             }
 
             // Spawn creature copied directly from ItemMonsterPlacer::onItemUse
 
             pos = pos.offset(facing);
-            double d0 = 0.0D;
-
-            if (facing == EnumFacing.UP && state.getBlock() instanceof BlockFence) {
-                d0 = 0.5D;
-            }
-
-            Entity entity = ItemMonsterPlacer.spawnCreature(world,
-                    SpawnerCraftMobAlias.aliasedIDs.containsKey(id) ? SpawnerCraftMobAlias.aliasedIDs.get(id) : id,
-                    (double) pos.getX() + 0.5D, (double) pos.getY() + d0, (double) pos.getZ() + 0.5D);
+            double d0 = this.getYOffset(world, pos);
+            Entity entity = ItemMonsterPlacer.spawnCreature(world, ItemMonsterPlacer.getNamedIdFrom(stack),
+                    pos.getX() + 0.5, pos.getY() + d0, pos.getZ() + 0.5);
 
             if (entity != null) {
                 if (entity instanceof EntityLivingBase && stack.hasDisplayName()) {
@@ -102,11 +88,29 @@ public class ItemMobSpirit extends ItemMobSoul {
                 ItemMonsterPlacer.applyItemEntityDataToEntity(world, player, stack, entity);
 
                 if (!player.capabilities.isCreativeMode) {
-                    --stack.stackSize;
+                    stack.shrink(1);
                 }
             }
+        }
 
-            return EnumActionResult.SUCCESS;
+        return EnumActionResult.SUCCESS;
+    }
+
+    // Copied directly from ItemMonsterPlacer::getYOffset
+    private double getYOffset(World world, BlockPos pos) {
+        AxisAlignedBB aabb = (new AxisAlignedBB(pos)).addCoord(0.0D, -1.0D, 0.0D);
+        List<AxisAlignedBB> list = world.getCollisionBoxes(null, aabb);
+
+        if (list.isEmpty()) {
+            return 0.0D;
+        } else {
+            double d0 = aabb.minY;
+
+            for (AxisAlignedBB axisalignedbb1 : list) {
+                d0 = Math.max(axisalignedbb1.maxY, d0);
+            }
+
+            return d0 - (double) pos.getY();
         }
     }
 }
