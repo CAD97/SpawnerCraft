@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/handheld_rod",
   "textures": {
-    "layer0": "spawnercraft:items/mobRod"
+    "layer0": "spawnercraft:items/mob_rod"
   }
 }

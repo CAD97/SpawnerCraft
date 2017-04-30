@@ -1,7 +1,7 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "spawnercraft:items/mobEssence",
-    "layer1": "spawnercraft:items/mobEssence_overlay"
+    "layer0": "spawnercraft:items/mob_essence",
+    "layer1": "spawnercraft:items/mob_essence_overlay"
   }
 }
