@@ -42,20 +42,20 @@ public class ConfigHandler {
     private static void loadConfig() {
         spawnerDropSilkLevel = config.get(
                 Configuration.CATEGORY_GENERAL,
-                "spawner_drop_required_silk_touch_level",
+                "Silk Touch for Spawner Drop",
                 0,
                 "Required silk touch level to drop Empty Spawners from normal Mob Spawners.\n" +
                         "Set higher than obtainable silk touch (vanilla: >1) to disable."
         ).getInt(0);
         spawnerCraftable = config.get(
                 Configuration.CATEGORY_GENERAL,
-                "is_spawner_craftable",
+                "Is Empty Spawner Craftable",
                 false,
                 "Is it possible to craft an Empty Monster Spawner from iron bars?"
         ).setRequiresMcRestart(true).getBoolean();
         dropsRequireFishing = config.get(
                 Configuration.CATEGORY_GENERAL,
-                "drops_require_fishing",
+                "Essence Drops Require Fishing",
                 true,
                 "Do Mob Essence drops require the use of a Mob Fishing Pole?"
         ).getBoolean();
