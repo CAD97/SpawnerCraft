@@ -36,11 +36,9 @@ public class DropsListener {
         ResourceLocation entityResource = EntityList.getKey(entity);
         if (entityResource == null) return;
         String entityString = entityResource.toString();
-        System.err.println(entityResource.toString());
         if (ConfigHandler.eggMapping.containsKey(entityString)) {
             entityString = ConfigHandler.eggMapping.get(entityString);
             entityResource = new ResourceLocation(entityString);
-            System.err.println(entityResource.toString());
         }
         ItemStack stack = new ItemStack(SpawnerCraftItems.MOB_ESSENCE);
         if (EntityList.ENTITY_EGGS.containsKey(entityResource) &&
