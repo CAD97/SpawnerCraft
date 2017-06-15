@@ -27,7 +27,9 @@ public class ConfigHandler {
     @SuppressWarnings("WeakerAccess")
     public static boolean dropsRequireFishing;
     @SuppressWarnings("WeakerAccess")
-    public static List disabledMobs = Arrays.asList(DEFAULT_DISABLED_MOBS);
+    public static List mobEssenceToggleList = Arrays.asList(DEFAULT_DISABLED_MOBS);
+    @SuppressWarnings("WeakerAccess")
+    public static boolean toggleListIsBlacklist;
     @SuppressWarnings("WeakerAccess")
     public static Map<String, String> eggMapping = new HashMap<>();
 
@@ -69,12 +71,20 @@ public class ConfigHandler {
                 true,
                 "Do Mob Essence drops require the use of a Mob Fishing Pole?"
         ).getBoolean();
-        disabledMobs = Arrays.asList(config.get(
+        mobEssenceToggleList = Arrays.asList(config.get(
                 Configuration.CATEGORY_GENERAL,
-                "Disabled Essence",
+                "Toggle Essence Validity",
                 DEFAULT_DISABLED_MOBS,
-                "Mobs which should never drop essence."
+                "Mobs which should not have essence (blacklist mode)\n" +
+                        "Mobs which should have essence (whitelist mode)"
         ).getStringList());
+        toggleListIsBlacklist = config.get(
+                Configuration.CATEGORY_GENERAL,
+                "Toggle Essence Blacklist Mode",
+                true,
+                "Toggle Essence should operate in blacklist mode (true) or whitelist mode (false)"
+        ).getBoolean();
+
         config.getCategory("Egg Mapping").forEach((key, value) -> eggMapping.put(key, value.getString()));
 
         if (config.hasChanged()) {
