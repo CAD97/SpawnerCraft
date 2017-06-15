@@ -5,11 +5,14 @@ import cad97.spawnercraft.utility.LogHelper;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import scala.actors.threadpool.Arrays;
 
 import java.io.File;
+import java.util.List;
 
 public class ConfigHandler {
     public static final ConfigHandler instance = new ConfigHandler();
+    private static String[] DEFAULT_DISABLED_MOBS = {};
 
     private ConfigHandler() {
     }
@@ -21,6 +24,8 @@ public class ConfigHandler {
     public static boolean spawnerCraftable;
     @SuppressWarnings("WeakerAccess")
     public static boolean dropsRequireFishing;
+    @SuppressWarnings("WeakerAccess")
+    public static List disabledMobs = Arrays.asList(DEFAULT_DISABLED_MOBS);
 
     public static void init(File configFile) {
         if (config == null) {
@@ -59,6 +64,12 @@ public class ConfigHandler {
                 true,
                 "Do Mob Essence drops require the use of a Mob Fishing Pole?"
         ).getBoolean();
+        disabledMobs = Arrays.asList(config.get(
+                Configuration.CATEGORY_GENERAL,
+                "Disabled Essence",
+                DEFAULT_DISABLED_MOBS,
+                "Mobs which should never drop essence."
+        ).getStringList());
 
         if (config.hasChanged()) {
             config.save();

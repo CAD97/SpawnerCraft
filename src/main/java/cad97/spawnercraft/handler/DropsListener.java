@@ -42,8 +42,10 @@ public class DropsListener {
 
     private void dropFor(Entity entity) {
         ResourceLocation entityString = EntityList.getKey(entity);
+        if (entityString == null) return;
         ItemStack stack = new ItemStack(SpawnerCraftItems.MOB_ESSENCE);
-        if (EntityList.ENTITY_EGGS.containsKey(entityString)) {
+        if (EntityList.ENTITY_EGGS.containsKey(entityString) &&
+                !ConfigHandler.disabledMobs.contains(entityString.getResourcePath())) {
             ItemMobSoul.applyEntityIdToItemStack(stack, entityString);
             entity.entityDropItem(stack, 0.0F);
         }
