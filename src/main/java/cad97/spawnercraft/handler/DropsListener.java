@@ -15,16 +15,8 @@ import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class DropsListener {
     public static final DropsListener instance = new DropsListener();
-    private static final Map<String, String> entityEggModSupport = new HashMap<>();
-
-    static {
-        entityEggModSupport.put("MCA.EntityHuman", "Villager");
-    }
 
     private DropsListener() {
     }
@@ -41,12 +33,19 @@ public class DropsListener {
     }
 
     private void dropFor(Entity entity) {
-        ResourceLocation entityString = EntityList.getKey(entity);
-        if (entityString == null) return;
+        ResourceLocation entityResource = EntityList.getKey(entity);
+        if (entityResource == null) return;
+        String entityString = entityResource.toString();
+        System.err.println(entityResource.toString());
+        if (ConfigHandler.eggMapping.containsKey(entityString)) {
+            entityString = ConfigHandler.eggMapping.get(entityString);
+            entityResource = new ResourceLocation(entityString);
+            System.err.println(entityResource.toString());
+        }
         ItemStack stack = new ItemStack(SpawnerCraftItems.MOB_ESSENCE);
-        if (EntityList.ENTITY_EGGS.containsKey(entityString) &&
-                !ConfigHandler.disabledMobs.contains(entityString.getResourcePath())) {
-            ItemMobSoul.applyEntityIdToItemStack(stack, entityString);
+        if (EntityList.ENTITY_EGGS.containsKey(entityResource) &&
+                !ConfigHandler.disabledMobs.contains(entityString)) {
+            ItemMobSoul.applyEntityIdToItemStack(stack, entityResource);
             entity.entityDropItem(stack, 0.0F);
         }
     }

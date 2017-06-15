@@ -8,7 +8,9 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import scala.actors.threadpool.Arrays;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ConfigHandler {
     public static final ConfigHandler instance = new ConfigHandler();
@@ -26,6 +28,8 @@ public class ConfigHandler {
     public static boolean dropsRequireFishing;
     @SuppressWarnings("WeakerAccess")
     public static List disabledMobs = Arrays.asList(DEFAULT_DISABLED_MOBS);
+    @SuppressWarnings("WeakerAccess")
+    public static Map<String, String> eggMapping = new HashMap<>();
 
     public static void init(File configFile) {
         if (config == null) {
@@ -33,6 +37,7 @@ public class ConfigHandler {
         }
 
         loadConfig();
+        config.save();
 
         LogHelper.logInfo("ConfigHandler initialized.");
     }
@@ -70,6 +75,7 @@ public class ConfigHandler {
                 DEFAULT_DISABLED_MOBS,
                 "Mobs which should never drop essence."
         ).getStringList());
+        config.getCategory("Egg Mapping").forEach((key, value) -> eggMapping.put(key, value.getString()));
 
         if (config.hasChanged()) {
             config.save();

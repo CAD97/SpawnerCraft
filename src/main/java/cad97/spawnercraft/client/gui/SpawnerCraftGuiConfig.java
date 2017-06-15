@@ -24,7 +24,6 @@ public class SpawnerCraftGuiConfig extends GuiConfig {
     private static List<IConfigElement> getConfigElements() {
         List<IConfigElement> elements = new ArrayList<>();
         elements.addAll(new ConfigElement(ConfigHandler.config.getCategory(Configuration.CATEGORY_GENERAL)).getChildElements());
-        elements.addAll(new ConfigElement(ConfigHandler.config.getCategory("Custom Souls")).getChildElements());
         return elements;
     }
 }
