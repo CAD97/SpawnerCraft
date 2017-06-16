@@ -36,10 +36,6 @@ public class NBTPreservingShapedRecipe extends ShapedRecipes {
         return output;
     }
 
-    public ItemStack[] getRecipeInputs() {
-        return this.recipeItems;
-    }
-
     @Override
     public boolean matches(@Nonnull InventoryCrafting inv, World worldIn) {
         matchingCompound = null;
@@ -54,7 +50,7 @@ public class NBTPreservingShapedRecipe extends ShapedRecipes {
 
         for (int i = 0; i < inv.getSizeInventory(); ++i) {
             ItemStack itemStack = inv.getStackInSlot(i);
-            if (!Objects.equal(itemStack.getTagCompound(), matchingCompound)) {
+            if (!itemStack.isEmpty() && !Objects.equal(itemStack.getTagCompound(), matchingCompound)) {
                 return false;
             }
         }
