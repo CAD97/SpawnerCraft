@@ -23,7 +23,7 @@ public class DropsListener {
 
     @SubscribeEvent
     public void onMobDrops(LivingDropsEvent event) {
-        Entity sourceOfDamage = event.getSource().getSourceOfDamage();
+        Entity sourceOfDamage = event.getSource().getTrueSource();
         if (sourceOfDamage instanceof EntityPlayer) {
             ItemStack heldItem = ((EntityPlayer) sourceOfDamage).getHeldItemMainhand();
             if (heldItem.getItem() == SpawnerCraftItems.MOB_ROD || !ConfigHandler.dropsRequireFishing) {

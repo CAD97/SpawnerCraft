@@ -98,7 +98,7 @@ public class ItemMobSpirit extends ItemMobSoul {
 
     // Copied directly from ItemMonsterPlacer::getYOffset
     private double getYOffset(World world, BlockPos pos) {
-        AxisAlignedBB aabb = (new AxisAlignedBB(pos)).addCoord(0.0D, -1.0D, 0.0D);
+        AxisAlignedBB aabb = (new AxisAlignedBB(pos)).expand(0.0D, -1.0D, 0.0D);
         List<AxisAlignedBB> list = world.getCollisionBoxes(null, aabb);
 
         if (list.isEmpty()) {

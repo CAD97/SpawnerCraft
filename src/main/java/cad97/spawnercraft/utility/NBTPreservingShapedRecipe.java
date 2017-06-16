@@ -36,6 +36,10 @@ public class NBTPreservingShapedRecipe extends ShapedRecipes {
         return output;
     }
 
+    public ItemStack[] getRecipeInputs() {
+        return this.recipeItems;
+    }
+
     @Override
     public boolean matches(@Nonnull InventoryCrafting inv, World worldIn) {
         matchingCompound = null;

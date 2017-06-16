@@ -43,13 +43,6 @@ public abstract class ItemMobSoul extends SpawnerCraftItem {
     @SideOnly(Side.CLIENT)
     public void getSubItems(@Nonnull Item itemIn, CreativeTabs tab, NonNullList<ItemStack> subItems) {
         Items.SPAWN_EGG.getSubItems(itemIn, tab, subItems);
-/*
-        for (EntityList.EntityEggInfo egg : EntityList.ENTITY_EGGS.values()) {
-            ItemStack stack = new ItemStack(itemIn);
-            ItemMobSoul.applyEntityIdToItemStack(stack, egg.spawnedID);
-            subItems.add(stack);
-        }
-*/
     }
 
     // Stolen from @SideOnly(CLIENT) in ItemMonsterPlacer. I need to access it on server side
