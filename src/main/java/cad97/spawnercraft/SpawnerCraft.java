@@ -8,6 +8,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
+@SuppressWarnings("DefaultAnnotationParam")
 @Mod(modid = SpawnerCraft.MOD_ID, name = SpawnerCraft.MOD_NAME, version = SpawnerCraft.VERSION,
         guiFactory = SpawnerCraft.GUI_FACTORY_CLASS, dependencies = SpawnerCraft.DEPENDENCIES,
         acceptedMinecraftVersions = SpawnerCraft.ACCEPTED_MINECRAFT_VERSION)
@@ -29,6 +30,7 @@ public class SpawnerCraft {
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
+        LogHelper.setLogger(event.getModLog());
         proxy.preInit(event);
         LogHelper.logInfo("preInit finished.");
     }

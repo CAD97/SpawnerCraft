@@ -34,10 +34,10 @@ public class SpawnerCraftItems {
     }
 
     @SideOnly(Side.CLIENT)
+    @SuppressWarnings("ConstantConditions")
     public static void registerModels() {
         ModelLoader.setCustomModelResourceLocation(MOB_ESSENCE, 0,
                 new ModelResourceLocation(MOB_ESSENCE.getRegistryName(), "inventory"));
-        System.out.println(MOB_ESSENCE.getRegistryName());
         ModelLoader.setCustomModelResourceLocation(MOB_AGGLOMERATION, 0,
                 new ModelResourceLocation(MOB_AGGLOMERATION.getRegistryName(), "inventory"));
         ModelLoader.setCustomModelResourceLocation(MOB_SPIRIT, 0,

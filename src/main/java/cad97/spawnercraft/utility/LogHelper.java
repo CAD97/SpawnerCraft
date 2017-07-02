@@ -1,13 +1,18 @@
 package cad97.spawnercraft.utility;
 
 import cad97.spawnercraft.SpawnerCraft;
-import net.minecraftforge.fml.common.FMLLog;
 import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.Logger;
 
 public final class LogHelper {
+    private static Logger logger;
+
+    public static void setLogger(Logger logger) {
+        LogHelper.logger = logger;
+    }
 
     private static void log(Level level, String message) {
-        FMLLog.log(level, "%s", "[" + SpawnerCraft.MOD_NAME + "] " + message);
+        logger.log(level, "%s", "[" + SpawnerCraft.MOD_NAME + "] " + message);
     }
 
     public static void logFatal(String message) {
