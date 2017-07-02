@@ -17,10 +17,10 @@ public class SpawnerCraft {
     public static final String MOD_ID = "spawnercraft";
     public static final String MOD_NAME = "SpawnerCraft";
 
-    static final String VERSION = "4.0";
+    static final String VERSION = "4.0.0";
     static final String GUI_FACTORY_CLASS = "cad97.spawnercraft.client.gui.GuiFactory"; // GuiFactory.class.getCanonicalName()
     static final String DEPENDENCIES = "";
-    static final String ACCEPTED_MINECRAFT_VERSION = "[1.11]";
+    static final String ACCEPTED_MINECRAFT_VERSION = "[1.11.2]";
 
     @Mod.Instance
     static SpawnerCraft instance;

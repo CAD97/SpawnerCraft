@@ -1,31 +1,20 @@
 package cad97.spawnercraft.client.gui;
 
-import net.minecraft.client.Minecraft;
+import cad97.spawnercraft.SpawnerCraft;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraftforge.fml.client.IModGuiFactory;
-
-import java.util.Set;
+import net.minecraftforge.fml.client.DefaultGuiFactory;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SuppressWarnings("unused")
-public class GuiFactory implements IModGuiFactory {
-    @Override
-    public void initialize(Minecraft minecraftInstance) {
-        // stub
+@SideOnly(Side.CLIENT)
+public class GuiFactory extends DefaultGuiFactory {
+    public GuiFactory() {
+        super(SpawnerCraft.MOD_ID, SpawnerCraft.MOD_NAME);
     }
 
     @Override
-    public Class<? extends GuiScreen> mainConfigGuiClass() {
-        return SpawnerCraftGuiConfig.class;
-    }
-
-    @Override
-    public Set<RuntimeOptionCategoryElement> runtimeGuiCategories() {
-        return null;
-    }
-
-    @Override
-    @SuppressWarnings("deprecation")
-    public RuntimeOptionGuiHandler getHandlerFor(RuntimeOptionCategoryElement element) {
-        return null;
+    public GuiScreen createConfigGui(GuiScreen parentScreen) {
+        return new SpawnerCraftGuiConfig(parentScreen);
     }
 }
