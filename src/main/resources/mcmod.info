@@ -1,0 +1,16 @@
+[
+  {
+    "modid": "testkt",
+    "name": "TestKt",
+    "description": "A test for using Forgelin",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": "",
+    "updateUrl": "",
+    "authorList": ["CAD97"],
+    "credits": "Emberwalker: Forgelin; MinecraftForge: making this possible",
+    "logoFile": "",
+    "screenshots": [],
+    "dependencies": []
+  }
+]
