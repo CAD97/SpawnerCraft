@@ -42,7 +42,7 @@ public class DropsListener {
         }
         ItemStack stack = new ItemStack(SpawnerCraftItems.MOB_ESSENCE);
         if (EntityList.ENTITY_EGGS.containsKey(entityResource) &&
-                (ConfigHandler.mobEssenceToggleList.contains(entityString) ^ ConfigHandler.toggleListIsBlacklist)
+                (ConfigHandler.mobEssenceToggleList.contains(entityString) ^ ConfigHandler.isListBlacklist)
                 ) {
             ItemMobSoul.applyEntityIdToItemStack(stack, entityResource);
             entity.entityDropItem(stack, 0.0F);

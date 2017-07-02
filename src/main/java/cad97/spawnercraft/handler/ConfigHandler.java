@@ -29,7 +29,7 @@ public class ConfigHandler {
     @SuppressWarnings("WeakerAccess")
     public static List mobEssenceToggleList = Arrays.asList(DEFAULT_DISABLED_MOBS);
     @SuppressWarnings("WeakerAccess")
-    public static boolean toggleListIsBlacklist;
+    public static boolean isListBlacklist;
     @SuppressWarnings("WeakerAccess")
     public static Map<String, String> eggMapping = new HashMap<>();
 
@@ -78,9 +78,9 @@ public class ConfigHandler {
                 "Mobs which should not have essence (blacklist mode)\n" +
                         "Mobs which should have essence (whitelist mode)"
         ).getStringList());
-        toggleListIsBlacklist = config.get(
+        isListBlacklist = config.get(
                 Configuration.CATEGORY_GENERAL,
-                "Toggle Essence Blacklist Mode",
+                "Essence Blacklist Mode",
                 true,
                 "Toggle Essence should operate in blacklist mode (true) or whitelist mode (false)"
         ).getBoolean();
