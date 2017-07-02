@@ -2,8 +2,6 @@ package cad97.spawnercraft.items;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityList;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -41,8 +39,14 @@ public abstract class ItemMobSoul extends SpawnerCraftItem {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(@Nonnull Item itemIn, CreativeTabs tab, NonNullList<ItemStack> subItems) {
-        Items.SPAWN_EGG.getSubItems(itemIn, tab, subItems);
+    public void getSubItems(@Nonnull CreativeTabs tab, @Nonnull NonNullList<ItemStack> items) {
+        if (this.isInCreativeTab(tab)) {
+            for (EntityList.EntityEggInfo entitylist$entityegginfo : EntityList.ENTITY_EGGS.values()) {
+                ItemStack itemstack = new ItemStack(this, 1);
+                applyEntityIdToItemStack(itemstack, entitylist$entityegginfo.spawnedID);
+                items.add(itemstack);
+            }
+        }
     }
 
     // Stolen from @SideOnly(CLIENT) in ItemMonsterPlacer. I need to access it on server side

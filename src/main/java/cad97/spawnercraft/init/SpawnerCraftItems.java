@@ -11,9 +11,11 @@ import net.minecraft.entity.EntityList;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import static cad97.spawnercraft.init.SpawnerCraftBlocks.MOB_CAGE;
 
 public class SpawnerCraftItems {
 
@@ -25,11 +27,12 @@ public class SpawnerCraftItems {
     public static final ItemMobRod MOB_ROD = new ItemMobRod();
 
     public static void registerItems() {
-        GameRegistry.register(MOB_ESSENCE);
-        GameRegistry.register(MOB_AGGLOMERATION);
-        GameRegistry.register(MOB_SPIRIT);
-        GameRegistry.register(MOB_ROD);
-        GameRegistry.register(new ItemBlock(SpawnerCraftBlocks.MOB_CAGE), SpawnerCraftBlocks.MOB_CAGE.getRegistryName());
+        ForgeRegistries.ITEMS.register(MOB_ESSENCE);
+        ForgeRegistries.ITEMS.register(MOB_AGGLOMERATION);
+        ForgeRegistries.ITEMS.register(MOB_SPIRIT);
+        ForgeRegistries.ITEMS.register(MOB_ROD);
+        //noinspection ConstantConditions
+        ForgeRegistries.ITEMS.register(new ItemBlock(MOB_CAGE).setRegistryName(MOB_CAGE.getRegistryName()));
         LogHelper.logInfo("Items initialized.");
     }
 

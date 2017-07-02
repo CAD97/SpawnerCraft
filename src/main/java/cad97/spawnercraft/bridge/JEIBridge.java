@@ -2,7 +2,7 @@ package cad97.spawnercraft.bridge;
 
 import cad97.spawnercraft.init.SpawnerCraftItems;
 import cad97.spawnercraft.items.ItemMobSoul;
-import mezz.jei.api.BlankModPlugin;
+import mezz.jei.api.IModPlugin;
 import mezz.jei.api.IModRegistry;
 import mezz.jei.api.ISubtypeRegistry;
 import mezz.jei.api.JEIPlugin;
@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @JEIPlugin
-public class JEIBridge extends BlankModPlugin {
+public class JEIBridge implements IModPlugin {
     @Override
     public void registerItemSubtypes(@Nonnull ISubtypeRegistry subtypeRegistry) {
         subtypeRegistry.useNbtForSubtypes(

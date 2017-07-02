@@ -4,8 +4,10 @@ import cad97.spawnercraft.SpawnerCraft;
 import com.google.common.base.Objects;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 import net.minecraftforge.oredict.RecipeSorter;
 
@@ -22,8 +24,8 @@ public class NBTPreservingShapedRecipe extends ShapedRecipes {
                 RecipeSorter.Category.SHAPED, "after:minecraft:shaped");
     }
 
-    public NBTPreservingShapedRecipe(int width, int height, ItemStack[] items, ItemStack output) {
-        super(width, height, items, output);
+    public NBTPreservingShapedRecipe(String group, int width, int height, NonNullList<Ingredient> items, ItemStack output) {
+        super(group, width, height, items, output);
     }
 
     private NBTTagCompound matchingCompound = null;
