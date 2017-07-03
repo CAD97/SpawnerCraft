@@ -1,16 +1,14 @@
 [
   {
     "modid": "spawnercraftkt",
-    "name": "SpawnerCraftKt",
-    "description": "Spawner",
+    "name": "SpawnerCraft",
+    "description": "SpawnerCraft allows a player to create their own spawners wherever they wish, while still requiring the player to find naturally generated spawners, therefor keeping the elements of exploration and reward in vanilla, while adding the possibility to move and create vanilla-friendly spawners in powerful ways not normally achievable.",
     "version": "${version}",
-    "mcversion": "1.12",
-    "url": "",
-    "updateUrl": "",
+    "mcversion": "${minecraft.version}",
+    "url": "https://github.com/CAD97/SpawnerCraft",
     "authorList": ["CAD97"],
-    "credits": "",
-    "logoFile": "",
-    "screenshots": [],
+    "useDependencyInformation": true,
+    "requiredMods": [],
     "dependencies": []
   }
 ]
