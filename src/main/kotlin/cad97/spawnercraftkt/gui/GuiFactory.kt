@@ -10,6 +10,10 @@ import net.minecraftforge.fml.client.config.GuiConfig
 
 @Suppress("unused")
 class GuiFactory : DefaultGuiFactory(SpawnerCraft.modid, SpawnerCraft.name) {
+    companion object {
+        // GuiFactory::class.java.canonicalName
+        const val qualifiedName = "cad97.spawnercraftkt.gui.GuiFactory"
+    }
     override fun createConfigGui(parent: GuiScreen) =
             GuiConfig(
                     parent,

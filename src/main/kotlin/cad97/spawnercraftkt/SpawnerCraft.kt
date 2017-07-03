@@ -1,5 +1,6 @@
 package cad97.spawnercraftkt
 
+import cad97.spawnercraftkt.gui.GuiFactory
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.common.event.FMLInitializationEvent
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent
@@ -10,7 +11,7 @@ import org.apache.logging.log4j.Logger
         modid = SpawnerCraft.modid,
         version = SpawnerCraft.version,
         name = SpawnerCraft.name,
-        guiFactory = "cad97.spawnercraftkt.gui.GuiFactory",
+        guiFactory = GuiFactory.qualifiedName,
         useMetadata = SpawnerCraft.useMetadata,
         acceptedMinecraftVersions = SpawnerCraft.acceptedMinecraftVersions
 )
