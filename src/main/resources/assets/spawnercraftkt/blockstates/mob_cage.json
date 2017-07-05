@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "normal": { "model": "minecraft:mob_spawner_cage" }
+  }
+}
