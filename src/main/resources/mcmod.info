@@ -9,6 +9,8 @@
     "authorList": ["CAD97"],
     "useDependencyInformation": true,
     "requiredMods": [],
-    "dependencies": []
+    "dependencies": [
+      "forgelin"
+    ]
   }
 ]

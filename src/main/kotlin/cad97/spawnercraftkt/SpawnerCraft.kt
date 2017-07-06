@@ -16,31 +16,27 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent
 import org.apache.logging.log4j.Logger
 
 
-
 @Mod(
         modid = SpawnerCraft.modid,
         version = SpawnerCraft.version,
         name = SpawnerCraft.name,
         guiFactory = GuiFactory.qualifiedName,
         useMetadata = SpawnerCraft.useMetadata,
-        acceptedMinecraftVersions = SpawnerCraft.acceptedMinecraftVersions
+        acceptedMinecraftVersions = SpawnerCraft.acceptedMinecraftVersions,
+        modLanguageAdapter = "net.shadowfacts.forgelin.KotlinAdapter"
 )
-class SpawnerCraft {
-    companion object {
-        @Mod.Instance
-        lateinit var instance: SpawnerCraft private set
-        @SidedProxy(modId = modid, clientSide = ClientProxy.qualifiedName, serverSide = ServerProxy.qualifiedName)
-        lateinit var proxy: Proxy private set
-        lateinit var logger: Logger private set
-        const val modid = "spawnercraftkt"
-        const val name = "SpawnerCraft"
-        const val version = "<%version%>"
-        const val useMetadata = true
-        const val acceptedMinecraftVersions = "1.12"
+object SpawnerCraft {
+    @SidedProxy(modId = modid, clientSide = ClientProxy.qualifiedName, serverSide = ServerProxy.qualifiedName)
+    lateinit var proxy: Proxy private set
+    lateinit var logger: Logger private set
+    const val modid = "spawnercraftkt"
+    const val name = "SpawnerCraft"
+    const val version = "<%version%>"
+    const val useMetadata = true
+    const val acceptedMinecraftVersions = "1.12"
 
-        val tab: CreativeTabs = object : CreativeTabs("spawnercraft.tab") {
-            override fun getTabIconItem() = ItemStack(Item.getItemFromBlock(Blocks.MOB_SPAWNER))
-        }
+    val tab: CreativeTabs = object : CreativeTabs("spawnercraft.tab") {
+        override fun getTabIconItem() = ItemStack(Item.getItemFromBlock(Blocks.MOB_SPAWNER))
     }
 
     @Mod.EventHandler
