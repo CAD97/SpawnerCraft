@@ -8,16 +8,15 @@ import javax.annotation.OverridingMethodsMustInvokeSuper
 
 abstract class Proxy {
     @OverridingMethodsMustInvokeSuper
-    fun preInit(event: FMLPreInitializationEvent) {
+    open fun preInit(event: FMLPreInitializationEvent) {
         Config.init(event.suggestedConfigurationFile)
     }
 
     @OverridingMethodsMustInvokeSuper
-    fun init(event: FMLInitializationEvent) {
+    open fun init(event: FMLInitializationEvent) {
     }
 
     @OverridingMethodsMustInvokeSuper
-    fun postInit(event: FMLPostInitializationEvent) {
-
+    open fun postInit(event: FMLPostInitializationEvent) {
     }
 }

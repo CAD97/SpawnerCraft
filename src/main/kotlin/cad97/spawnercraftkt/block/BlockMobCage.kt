@@ -12,14 +12,15 @@ import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 
 object BlockMobCage : Block(Material.ROCK) {
-    const val resourcePath = "mob_cage"
+    const val id = "mob_cage"
 
     init {
-        registryName = ResourceLocation(SpawnerCraft.modid, resourcePath)
-        unlocalizedName = "${SpawnerCraft.modid}.$resourcePath"
+        registryName = ResourceLocation(SpawnerCraft.modid, id)
+        unlocalizedName = "${SpawnerCraft.modid}.$id"
         blockHardness = 5.0f
         soundType = SoundType.METAL
         setHarvestLevel("pickaxe", Item.ToolMaterial.STONE.harvestLevel)
+        setCreativeTab(SpawnerCraft.tab)
     }
 
     @Suppress("OverridingDeprecatedMember")

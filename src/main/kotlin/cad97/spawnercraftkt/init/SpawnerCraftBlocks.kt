@@ -13,23 +13,24 @@ import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 import net.minecraftforge.fml.common.registry.GameRegistry
 
-@Suppress("unused")
 @Mod.EventBusSubscriber(modid = SpawnerCraft.modid)
 object SpawnerCraftBlocks {
     @JvmStatic
-    @GameRegistry.ObjectHolder("${SpawnerCraft.modid}:${BlockMobCage.resourcePath}")
+    @GameRegistry.ObjectHolder("${SpawnerCraft.modid}:${BlockMobCage.id}")
     lateinit var mob_cage: Block private set
 
     @JvmStatic
     @SubscribeEvent
     fun registerBlocks(event: RegistryEvent.Register<Block>) {
         event.registry.register(BlockMobCage)
+        SpawnerCraft.logger.info("Blocks registered.")
     }
 
     @JvmStatic
     @SubscribeEvent
     fun registerItems(event: RegistryEvent.Register<Item>) {
         event.registry.register(ItemBlock(mob_cage).setRegistryName(BlockMobCage.registryName))
+        SpawnerCraft.logger.info("Block items registered.")
     }
 
     @JvmStatic
@@ -41,5 +42,6 @@ object SpawnerCraftBlocks {
                 0,
                 ModelResourceLocation(mob_cage_item.registryName, null)
         )
+        SpawnerCraft.logger.info("Block models registered.")
     }
 }

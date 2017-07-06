@@ -4,12 +4,18 @@ import cad97.spawnercraftkt.gui.GuiFactory
 import cad97.spawnercraftkt.proxy.ClientProxy
 import cad97.spawnercraftkt.proxy.Proxy
 import cad97.spawnercraftkt.proxy.ServerProxy
+import net.minecraft.creativetab.CreativeTabs
+import net.minecraft.init.Blocks
+import net.minecraft.item.Item
+import net.minecraft.item.ItemStack
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.common.SidedProxy
 import net.minecraftforge.fml.common.event.FMLInitializationEvent
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent
 import org.apache.logging.log4j.Logger
+
+
 
 @Mod(
         modid = SpawnerCraft.modid,
@@ -31,6 +37,10 @@ class SpawnerCraft {
         const val version = "<%version%>"
         const val useMetadata = true
         const val acceptedMinecraftVersions = "1.12"
+
+        val tab: CreativeTabs = object : CreativeTabs("spawnercraft.tab") {
+            override fun getTabIconItem() = ItemStack(Item.getItemFromBlock(Blocks.MOB_SPAWNER))
+        }
     }
 
     @Mod.EventHandler
