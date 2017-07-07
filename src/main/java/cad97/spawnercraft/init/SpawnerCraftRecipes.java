@@ -18,14 +18,14 @@ public class SpawnerCraftRecipes {
         ForgeRegistries.RECIPES.register(new NBTPreservingShapedRecipe(
                 "spawnercraft",
                 2, 2,
-                NonNullList.from(essence, essence, essence, essence),
+                NonNullList.withSize(4, essence),
                 new ItemStack(SpawnerCraftItems.MOB_AGGLOMERATION)
         ).setRegistryName("craft_mob_agglomeration"));
         Ingredient agglomeration = Ingredient.fromItem(SpawnerCraftItems.MOB_AGGLOMERATION);
         ForgeRegistries.RECIPES.register(new NBTPreservingShapedRecipe(
                 "spawnercraft",
                 2, 2,
-                NonNullList.from(agglomeration, agglomeration, agglomeration, agglomeration),
+                NonNullList.withSize(4, agglomeration),
                 new ItemStack(SpawnerCraftItems.MOB_SPIRIT)
         ).setRegistryName("craft_mob_spirit"));
         if (ConfigHandler.spawnerCraftable) {
