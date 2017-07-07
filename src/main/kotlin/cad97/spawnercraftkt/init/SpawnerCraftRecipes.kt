@@ -64,10 +64,7 @@ object SpawnerCraftRecipes {
         event.registry.register(NBTMatchingShapedRecipe(
                 SpawnerCraft.modid,
                 2, 2,
-                NonNullList.from(
-                        essenceIngredient, essenceIngredient,
-                        essenceIngredient, essenceIngredient
-                ),
+                NonNullList.withSize(4, essenceIngredient),
                 ItemStack(SpawnerCraftItems.mob_agglomeration)
         ))
         if (Config.spawnerCraftable) {
@@ -75,7 +72,7 @@ object SpawnerCraftRecipes {
             event.registry.register(ShapedRecipes(
                     SpawnerCraft.modid,
                     3, 3,
-                    NonNullList.from(
+                    NonNullList.from(null,
                             ironBarsIngredient, ironBarsIngredient, ironBarsIngredient,
                             ironBarsIngredient, Ingredient.EMPTY, ironBarsIngredient,
                             ironBarsIngredient, ironBarsIngredient, ironBarsIngredient
