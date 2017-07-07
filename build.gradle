@@ -31,15 +31,27 @@ minecraft {
 }
 
 repositories {
+    // Forgelin
     jcenter()
     maven {
         name "shadowfacts"
         url "http://maven.shadowfacts.net/"
     }
+    // JEI
+    maven {
+        name = "Progwml6"
+        url = "http://dvs1.progwml6.com/files/maven"
+    }
+    maven {
+        name = "ModMaven"
+        url = "modmaven.k-4u.nl"
+    }
 }
 
 dependencies {
     deobfCompile group: "net.shadowfacts", name: "Forgelin", version: "1.5.0"
+    deobfCompile "mezz.jei:jei_${mc_version}:${jei_version}:api"
+    runtime "mezz.jei:jei_${mc_version}:${jei_version}"
 }
 
 processResources {
