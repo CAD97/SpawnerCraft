@@ -43,19 +43,19 @@ object SpawnerCraftRecipes {
 
     @JvmStatic
     @GameRegistry.ItemStackHolder("${SpawnerCraft.modid}:${ItemMobSoul.essenceId}")
-    lateinit var essenceStack: ItemStack private set
+    lateinit var essenceStack: ItemStack
 
     @JvmStatic
     @GameRegistry.ItemStackHolder("${SpawnerCraft.modid}:${ItemMobSoul.agglomerationId}")
-    lateinit var agglomerationStack: ItemStack private set
+    lateinit var agglomerationStack: ItemStack
 
     @JvmStatic
     @GameRegistry.ItemStackHolder("minecraft:iron_bars")
-    lateinit var ironBarsStack: ItemStack private set
+    lateinit var ironBarsStack: ItemStack
 
     @JvmStatic
     @GameRegistry.ItemStackHolder("${SpawnerCraft.modid}:${BlockMobCage.id}")
-    lateinit var mobCageStack: ItemStack private set
+    lateinit var mobCageStack: ItemStack
 
     @JvmStatic
     @SubscribeEvent
