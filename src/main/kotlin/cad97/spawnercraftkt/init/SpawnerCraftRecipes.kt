@@ -2,6 +2,8 @@ package cad97.spawnercraftkt.init
 
 import cad97.spawnercraftkt.Config
 import cad97.spawnercraftkt.SpawnerCraft
+import cad97.spawnercraftkt.block.BlockMobCage
+import cad97.spawnercraftkt.item.ItemMobSoul
 import com.google.common.base.Objects
 import net.minecraft.init.Blocks
 import net.minecraft.inventory.InventoryCrafting
@@ -49,7 +51,7 @@ object SpawnerCraftRecipes {
                 2, 2,
                 NonNullList.withSize(4, essence),
                 ItemStack(SpawnerCraftItems.mob_agglomeration)
-        ))
+        ).setRegistryName(SpawnerCraft.modid, ItemMobSoul.agglomerationId))
         if (Config.spawnerCraftable) {
             val ironBars = Ingredient.fromItem(Item.getItemFromBlock(Blocks.IRON_BARS))
             event.registry.register(ShapedRecipes(
@@ -61,7 +63,7 @@ object SpawnerCraftRecipes {
                             ironBars, ironBars, ironBars
                     ),
                     ItemStack(Item.getItemFromBlock(SpawnerCraftBlocks.mob_cage))
-            ))
+            ).setRegistryName(SpawnerCraft.modid, BlockMobCage.id))
         }
         SpawnerCraft.logger.info("Recipes registered.")
     }
