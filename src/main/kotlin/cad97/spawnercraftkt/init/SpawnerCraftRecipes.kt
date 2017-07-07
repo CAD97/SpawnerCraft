@@ -2,10 +2,10 @@ package cad97.spawnercraftkt.init
 
 import cad97.spawnercraftkt.Config
 import cad97.spawnercraftkt.SpawnerCraft
-import cad97.spawnercraftkt.block.BlockMobCage
-import cad97.spawnercraftkt.item.ItemMobSoul
 import com.google.common.base.Objects
+import net.minecraft.init.Blocks
 import net.minecraft.inventory.InventoryCrafting
+import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
 import net.minecraft.item.crafting.IRecipe
 import net.minecraft.item.crafting.Ingredient
@@ -16,7 +16,6 @@ import net.minecraft.world.World
 import net.minecraftforge.event.RegistryEvent
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
-import net.minecraftforge.fml.common.registry.GameRegistry
 
 @Mod.EventBusSubscriber
 object SpawnerCraftRecipes {
@@ -42,42 +41,26 @@ object SpawnerCraftRecipes {
     }
 
     @JvmStatic
-    @GameRegistry.ItemStackHolder("${SpawnerCraft.modid}:${ItemMobSoul.essenceId}")
-    lateinit var essenceStack: ItemStack
-
-    @JvmStatic
-    @GameRegistry.ItemStackHolder("${SpawnerCraft.modid}:${ItemMobSoul.agglomerationId}")
-    lateinit var agglomerationStack: ItemStack
-
-    @JvmStatic
-    @GameRegistry.ItemStackHolder("minecraft:iron_bars")
-    lateinit var ironBarsStack: ItemStack
-
-    @JvmStatic
-    @GameRegistry.ItemStackHolder("${SpawnerCraft.modid}:${BlockMobCage.id}")
-    lateinit var mobCageStack: ItemStack
-
-    @JvmStatic
     @SubscribeEvent
     fun registerRecipes(event: RegistryEvent.Register<IRecipe>) {
-        val essenceIngredient = Ingredient.fromStacks(essenceStack)
+        val essence = Ingredient.fromItem(SpawnerCraftItems.mob_essence)
         event.registry.register(NBTMatchingShapedRecipe(
                 SpawnerCraft.modid,
                 2, 2,
-                NonNullList.withSize(4, essenceIngredient),
+                NonNullList.withSize(4, essence),
                 ItemStack(SpawnerCraftItems.mob_agglomeration)
         ))
         if (Config.spawnerCraftable) {
-            val ironBarsIngredient = Ingredient.fromStacks(ironBarsStack)
+            val ironBars = Ingredient.fromItem(Item.getItemFromBlock(Blocks.IRON_BARS))
             event.registry.register(ShapedRecipes(
                     SpawnerCraft.modid,
                     3, 3,
                     NonNullList.from(null,
-                            ironBarsIngredient, ironBarsIngredient, ironBarsIngredient,
-                            ironBarsIngredient, Ingredient.EMPTY, ironBarsIngredient,
-                            ironBarsIngredient, ironBarsIngredient, ironBarsIngredient
+                            ironBars, ironBars, ironBars,
+                            ironBars, Ingredient.EMPTY, ironBars,
+                            ironBars, ironBars, ironBars
                     ),
-                    mobCageStack
+                    ItemStack(Item.getItemFromBlock(SpawnerCraftBlocks.mob_cage))
             ))
         }
         SpawnerCraft.logger.info("Recipes registered.")
