@@ -5,19 +5,20 @@ import cad97.spawnercraftkt.SpawnerCraft
 import cad97.spawnercraftkt.block.BlockMobCage
 import cad97.spawnercraftkt.item.ItemMobSoul
 import com.google.common.base.Objects
-import net.minecraft.init.Blocks
 import net.minecraft.inventory.InventoryCrafting
-import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
 import net.minecraft.item.crafting.IRecipe
 import net.minecraft.item.crafting.Ingredient
 import net.minecraft.item.crafting.ShapedRecipes
 import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.util.NonNullList
+import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
 import net.minecraftforge.event.RegistryEvent
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
+import net.minecraftforge.fml.common.registry.ForgeRegistries
+import net.minecraftforge.registries.IForgeRegistryModifiable
 
 @Mod.EventBusSubscriber
 object SpawnerCraftRecipes {
@@ -52,19 +53,14 @@ object SpawnerCraftRecipes {
                 NonNullList.withSize(4, essence),
                 ItemStack(SpawnerCraftItems.mob_agglomeration)
         ).setRegistryName(SpawnerCraft.modid, ItemMobSoul.agglomerationId))
-        if (Config.spawnerCraftable) {
-            val ironBars = Ingredient.fromItem(Item.getItemFromBlock(Blocks.IRON_BARS))
-            event.registry.register(ShapedRecipes(
-                    SpawnerCraft.modid,
-                    3, 3,
-                    NonNullList.from(null,
-                            ironBars, ironBars, ironBars,
-                            ironBars, Ingredient.EMPTY, ironBars,
-                            ironBars, ironBars, ironBars
-                    ),
-                    ItemStack(Item.getItemFromBlock(SpawnerCraftBlocks.mob_cage))
-            ).setRegistryName(SpawnerCraft.modid, BlockMobCage.id))
-        }
         SpawnerCraft.logger.info("Recipes registered.")
+    }
+
+    fun removeDisabledRecipes() {
+        if (!Config.spawnerCraftable) {
+            val registry = ForgeRegistries.RECIPES as IForgeRegistryModifiable<IRecipe>
+            val removed = registry.remove(ResourceLocation(SpawnerCraft.modid, BlockMobCage.id))
+            SpawnerCraft.logger.info("Disabled recipe ${removed?.registryName}.")
+        }
     }
 }
