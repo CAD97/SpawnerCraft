@@ -22,7 +22,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 @Mod.EventBusSubscriber
 object SpawnerCraftRecipes {
     class NBTMatchingShapedRecipe(
-            group: String?,
+            group: String,
             width: Int,
             height: Int,
             items: NonNullList<Ingredient>,
@@ -52,7 +52,7 @@ object SpawnerCraftRecipes {
     fun registerRecipes(event: RegistryEvent.Register<IRecipe>) {
         val essence = Ingredient.fromItems(SpawnerCraftItems.mob_essence)
         event.registry.register(NBTMatchingShapedRecipe(
-                null,
+                "",
                 2, 2,
                 NonNullList.withSize(4, essence),
                 ItemStack(SpawnerCraftItems.mob_agglomeration)
@@ -60,7 +60,7 @@ object SpawnerCraftRecipes {
         if (Config.spawnerCraftable) {
             val ironBars = Ingredient.fromItem(Item.getItemFromBlock(Blocks.IRON_BARS))
             event.registry.register(ShapedRecipes(
-                    null,
+                    "",
                     3, 3,
                     NonNullList.from(null,
                             ironBars, ironBars, ironBars,
