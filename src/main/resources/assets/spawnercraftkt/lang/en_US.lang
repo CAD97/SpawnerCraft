@@ -1,6 +1,8 @@
+entity.null.name=Mob
+
 item.spawnercraftkt.mob_essence.name=Essence of %s
 item.spawnercraftkt.mob_agglomeration.name=Agglomeration of %s
 
-tile.spawnercraftkt.mob_cage.name=Empty Spawner
-
 itemGroup.spawnercraft.tab=SpawnerCraft
+
+tile.spawnercraftkt.mob_cage.name=Empty Spawner
