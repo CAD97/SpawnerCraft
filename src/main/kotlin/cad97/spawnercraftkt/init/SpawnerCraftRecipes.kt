@@ -29,6 +29,11 @@ object SpawnerCraftRecipes {
             output: ItemStack
     ) : ShapedRecipes(group, width, height, items, output) {
         private var matchingNBT: NBTTagCompound? = null
+        override fun getRecipeOutput(): ItemStack {
+            val output = super.getRecipeOutput()
+            output.tagCompound = matchingNBT
+            return output
+        }
         override fun matches(inv: InventoryCrafting, worldIn: World): Boolean {
             matchingNBT = (0 until inv.sizeInventory)
                     .map { inv.getStackInSlot(it) }
@@ -45,7 +50,7 @@ object SpawnerCraftRecipes {
     @JvmStatic
     @SubscribeEvent
     fun registerRecipes(event: RegistryEvent.Register<IRecipe>) {
-        val essence = Ingredient.fromItem(SpawnerCraftItems.mob_essence)
+        val essence = Ingredient.fromItems(SpawnerCraftItems.mob_essence)
         event.registry.register(NBTMatchingShapedRecipe(
                 SpawnerCraft.modid,
                 2, 2,

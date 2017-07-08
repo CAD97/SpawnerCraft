@@ -39,7 +39,7 @@ object SpawnerCraftItems {
         event.registry.register(
                 ItemMobSoul()
                         .setRegistryName(SpawnerCraft.modid, ItemMobSoul.agglomerationId)
-                        .setUnlocalizedName("${SpawnerCraft.modid}.${ItemMobSoul.essenceId}")
+                        .setUnlocalizedName("${SpawnerCraft.modid}.${ItemMobSoul.agglomerationId}")
         )
         SpawnerCraft.logger.info("Items registered.")
     }
