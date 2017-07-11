@@ -19,7 +19,6 @@ class ItemMobSoul : Item() {
 
     init {
         maxStackSize = 64
-        hasSubtypes = true
         creativeTab = SpawnerCraft.tab
     }
 

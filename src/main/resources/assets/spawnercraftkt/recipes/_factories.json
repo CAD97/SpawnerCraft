@@ -1,0 +1,5 @@
+{
+  "recipes": {
+    "nbt_pipethrough": "cad97.spawnercraftkt.recipe.NBTPreservingCompactingRecipe$Factory"
+  }
+}
