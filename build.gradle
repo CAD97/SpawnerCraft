@@ -22,6 +22,12 @@ sourceCompatibility = targetCompatibility = '1.8'
 compileJava {
     sourceCompatibility = targetCompatibility = '1.8'
 }
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = targetCompatibility
+        freeCompilerArgs += "-Xskip-runtime-version-check"
+    }
+}
 
 minecraft {
     version = mc_version + '-' + forge_version
@@ -50,7 +56,7 @@ repositories {
 
 dependencies {
     deobfCompile group: "net.shadowfacts", name: "Forgelin", version: "1.5.0"
-    deobfCompile "mezz.jei:jei_${mc_version}:${jei_version}:api"
+    deobfProvided "mezz.jei:jei_${mc_version}:${jei_version}:api"
     runtime "mezz.jei:jei_${mc_version}:${jei_version}"
 }
 
@@ -65,20 +71,9 @@ processResources {
 
         expand project.properties
     }
-        
+
     // copy everything else
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
-    }
-}
-
-compileKotlin {
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-}
-compileTestKotlin {
-    kotlinOptions {
-        jvmTarget = "1.8"
     }
 }

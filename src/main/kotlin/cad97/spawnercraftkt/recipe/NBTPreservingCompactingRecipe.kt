@@ -9,14 +9,15 @@ import net.minecraft.world.World
 import net.minecraftforge.common.crafting.CraftingHelper
 import net.minecraftforge.common.crafting.IRecipeFactory
 import net.minecraftforge.common.crafting.JsonContext
+import net.minecraftforge.registries.IForgeRegistryEntry.Impl
 
 @Suppress("unused")
-class NBTPreservingCompactingRecipe(val input: Ingredient, val count: Int, val output: ItemStack) :
-        net.minecraftforge.registries.IForgeRegistryEntry.Impl<IRecipe>(), IRecipe {
+class NBTPreservingCompactingRecipe(val input: Ingredient, val count: Int, val output: ItemStack) : Impl<IRecipe>(), IRecipe {
     init {
         if (count <= 0) throw IllegalArgumentException("input count must be positive")
     }
 
+    override fun canFit(width: Int, height: Int) = width * height <= count
     override fun matches(inv: InventoryCrafting, worldIn: World): Boolean {
         val stacks = (0 until inv.sizeInventory).map(inv::getStackInSlot).filter { !it.isEmpty }
         if (stacks.size != count) return false
@@ -24,6 +25,7 @@ class NBTPreservingCompactingRecipe(val input: Ingredient, val count: Int, val o
         return stacks.all { input.test(it) && it.tagCompound == nbt }
     }
 
+    override fun getRecipeOutput() = output
     override fun getCraftingResult(inv: InventoryCrafting) =
             output.copy()!!.apply {
                 tagCompound =
@@ -33,9 +35,6 @@ class NBTPreservingCompactingRecipe(val input: Ingredient, val count: Int, val o
                                 .first()
                                 .tagCompound
             }
-
-    override fun canFit(width: Int, height: Int) = width * height <= count
-    override fun getRecipeOutput() = output
 
     class Factory : IRecipeFactory {
         override fun parse(context: JsonContext, json: JsonObject): IRecipe {

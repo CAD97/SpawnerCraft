@@ -17,6 +17,7 @@ class TileEntityMobBlock : TileEntity() {
     }
 
     var mob: ResourceLocation = ResourceLocation("null")
+        private set
 
     fun setFrom(stack: ItemStack) {
         mob = ItemMonsterPlacer.getNamedIdFrom(stack) ?: ResourceLocation("null")

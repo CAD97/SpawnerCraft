@@ -14,6 +14,7 @@ class GuiFactory : DefaultGuiFactory(SpawnerCraft.modid, SpawnerCraft.name) {
         // GuiFactory::class.java.canonicalName
         const val qualifiedName = "cad97.spawnercraftkt.gui.GuiFactory"
     }
+
     override fun createConfigGui(parent: GuiScreen) =
             GuiConfig(
                     parent,

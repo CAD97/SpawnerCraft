@@ -1,6 +1,7 @@
 package cad97.spawnercraftkt.block
 
 import cad97.spawnercraftkt.SpawnerCraft
+import cad97.spawnercraftkt.extensions.Block.creativeTab
 import net.minecraft.block.Block
 import net.minecraft.block.SoundType
 import net.minecraft.block.material.Material
@@ -21,8 +22,8 @@ class BlockMobCage : Block(Material.ROCK) {
         unlocalizedName = "${SpawnerCraft.modid}.$id"
         blockHardness = 5.0f
         soundType = SoundType.METAL
+        creativeTab = SpawnerCraft.tab
         setHarvestLevel("pickaxe", Item.ToolMaterial.STONE.harvestLevel)
-        setCreativeTab(SpawnerCraft.tab)
     }
 
     @Suppress("OverridingDeprecatedMember")

@@ -9,7 +9,12 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent
 import net.minecraftforge.fml.common.registry.GameRegistry
 import javax.annotation.OverridingMethodsMustInvokeSuper
 
-abstract class Proxy {
+open class CommonProxy {
+    companion object {
+        // CommonProxy::class.java.qualifiedName
+        const val qualifiedName = "cad97.spawnercraftkt.proxy.CommonProxy"
+    }
+
     @OverridingMethodsMustInvokeSuper
     open fun preInit(event: FMLPreInitializationEvent) {
         Config.init(event.suggestedConfigurationFile)

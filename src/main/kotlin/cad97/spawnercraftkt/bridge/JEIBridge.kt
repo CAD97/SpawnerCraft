@@ -16,19 +16,18 @@ import net.minecraft.util.ResourceLocation
 
 @JEIPlugin
 class JEIBridge : IModPlugin {
-    override fun registerItemSubtypes(subtypeRegistry: ISubtypeRegistry) {
-        subtypeRegistry.useNbtForSubtypes(
-                SpawnerCraftItems.mob_essence,
-                SpawnerCraftItems.mob_agglomeration
-        )
-    }
+    override fun registerItemSubtypes(subtypeRegistry: ISubtypeRegistry) =
+            subtypeRegistry.useNbtForSubtypes(
+                    SpawnerCraftItems.mob_essence,
+                    SpawnerCraftItems.mob_agglomeration
+            )
 
     override fun register(registry: IModRegistry) {
         val essence = ItemStack(SpawnerCraftItems.mob_essence)
         val agglomeration = ItemStack(SpawnerCraftItems.mob_agglomeration)
         registry.addRecipes(EntityList.ENTITY_EGGS.keys.flatMap {
             listOf(
-                    NBTMatchingShapedRecipeWrapper(
+                    NBTPreservingCompactingRecipeWrapper(
                             it,
                             NonNullList.withSize(4, essence),
                             agglomeration
@@ -37,10 +36,8 @@ class JEIBridge : IModPlugin {
         }, VanillaRecipeCategoryUid.CRAFTING)
     }
 
-    class NBTMatchingShapedRecipeWrapper(variant: ResourceLocation, input: List<ItemStack>, output: ItemStack) : IRecipeWrapper {
-        val input = input.map {
-            it.copy().also { ItemMonsterPlacer.applyEntityIdToItemStack(it, variant) }
-        }
+    class NBTPreservingCompactingRecipeWrapper(variant: ResourceLocation, input: List<ItemStack>, output: ItemStack) : IRecipeWrapper {
+        val input = input.map { it.copy().also { ItemMonsterPlacer.applyEntityIdToItemStack(it, variant) } }
         val output = output.copy()!!.also { ItemMonsterPlacer.applyEntityIdToItemStack(it, variant) }
         override fun getIngredients(ingredients: IIngredients) {
             ingredients.setInputs(ItemStack::class.java, input)

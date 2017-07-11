@@ -5,7 +5,7 @@ import cad97.spawnercraftkt.init.SpawnerCraftItems
 import net.minecraft.client.Minecraft
 import net.minecraftforge.fml.common.event.FMLInitializationEvent
 
-class ClientProxy : Proxy() {
+class ClientProxy : CommonProxy() {
     companion object {
         // ClientProxy::class.java.qualifiedName
         const val qualifiedName = "cad97.spawnercraftkt.proxy.ClientProxy"

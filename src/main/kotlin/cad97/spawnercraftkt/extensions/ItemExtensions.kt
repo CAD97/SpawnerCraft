@@ -1,6 +1,6 @@
-@file:Suppress("DEPRECATION", "UsePropertyAccessSyntax", "unused")
+@file:Suppress("DEPRECATION", "UsePropertyAccessSyntax", "unused", "PackageDirectoryMismatch")
 
-package cad97.spawnercraftkt.minecraft
+package cad97.spawnercraftkt.extensions.Item
 
 import net.minecraft.item.Item
 import net.minecraft.item.ItemStack

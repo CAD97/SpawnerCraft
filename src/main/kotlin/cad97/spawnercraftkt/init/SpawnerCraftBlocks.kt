@@ -3,19 +3,15 @@ package cad97.spawnercraftkt.init
 import cad97.spawnercraftkt.SpawnerCraft
 import cad97.spawnercraftkt.block.BlockMobBlock
 import cad97.spawnercraftkt.block.BlockMobCage
+import cad97.spawnercraftkt.item.ItemMobSoul
 import net.minecraft.block.Block
 import net.minecraft.client.renderer.block.model.ModelResourceLocation
 import net.minecraft.client.renderer.color.BlockColors
-import net.minecraft.client.renderer.color.IBlockColor
-import net.minecraft.client.renderer.color.IItemColor
 import net.minecraft.client.renderer.color.ItemColors
-import net.minecraft.entity.EntityList
 import net.minecraft.item.Item
 import net.minecraft.item.ItemBlock
-import net.minecraft.item.ItemMonsterPlacer
 import net.minecraftforge.client.event.ModelRegistryEvent
 import net.minecraftforge.client.model.ModelLoader
-import net.minecraftforge.common.property.IExtendedBlockState
 import net.minecraftforge.event.RegistryEvent
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
@@ -52,33 +48,19 @@ object SpawnerCraftBlocks {
     @JvmStatic
     @SubscribeEvent
     fun registerModels(event: ModelRegistryEvent) {
-        val mob_cage_item = Item.getItemFromBlock(mob_cage)
-        ModelLoader.setCustomModelResourceLocation(
-                mob_cage_item,
-                0,
-                ModelResourceLocation(mob_cage_item.registryName, null)
-        )
-        val mob_block_item = Item.getItemFromBlock(mob_block)
-        ModelLoader.setCustomModelResourceLocation(
-                mob_block_item,
-                0,
-                ModelResourceLocation(mob_block_item.registryName, null)
-        )
+        for (item in setOf(mob_cage, mob_block)) {
+            ModelLoader.setCustomModelResourceLocation(
+                    Item.getItemFromBlock(item), 0,
+                    ModelResourceLocation(item.registryName.toString())
+            )
+        }
         SpawnerCraft.logger.info("Block models registered.")
     }
 
     @SideOnly(Side.CLIENT)
     fun registerColors(itemColors: ItemColors, blockColors: BlockColors) {
-        itemColors.registerItemColorHandler(IItemColor { stack, tintIndex ->
-            val eggInfo = EntityList.ENTITY_EGGS[ItemMonsterPlacer.getNamedIdFrom(stack)]
-            (if (tintIndex == 0) eggInfo?.primaryColor else eggInfo?.secondaryColor) ?: -1
-        }, mob_block)
-        blockColors.registerBlockColorHandler(IBlockColor { state, world, pos, tintIndex ->
-            val extendedState = state.block.getExtendedState(state, world, pos)
-            val mob = (extendedState as? IExtendedBlockState)?.getValue(BlockMobBlock.mobProperty)
-            val eggInfo = EntityList.ENTITY_EGGS[mob]
-            (if (tintIndex == 0) eggInfo?.primaryColor else eggInfo?.secondaryColor) ?: -1
-        }, mob_block)
+        itemColors.registerItemColorHandler(ItemMobSoul.colorHandler, mob_block)
+        blockColors.registerBlockColorHandler(BlockMobBlock.colorHandler, mob_block)
         SpawnerCraft.logger.info("Block colors registered.")
     }
 }

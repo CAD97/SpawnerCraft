@@ -3,12 +3,8 @@ package cad97.spawnercraftkt.init
 import cad97.spawnercraftkt.SpawnerCraft
 import cad97.spawnercraftkt.item.ItemMobSoul
 import net.minecraft.client.renderer.block.model.ModelResourceLocation
-import net.minecraft.client.renderer.color.IItemColor
 import net.minecraft.client.renderer.color.ItemColors
-import net.minecraft.entity.EntityList
 import net.minecraft.item.Item
-import net.minecraft.item.ItemMonsterPlacer
-import net.minecraft.item.ItemStack
 import net.minecraftforge.client.event.ModelRegistryEvent
 import net.minecraftforge.client.model.ModelLoader
 import net.minecraftforge.event.RegistryEvent
@@ -31,41 +27,31 @@ object SpawnerCraftItems {
     @JvmStatic
     @SubscribeEvent
     fun registerItems(event: RegistryEvent.Register<Item>) {
-        event.registry.register(
-                ItemMobSoul()
-                        .setRegistryName(SpawnerCraft.modid, ItemMobSoul.essenceId)
-                        .setUnlocalizedName("${SpawnerCraft.modid}.${ItemMobSoul.essenceId}")
-        )
-        event.registry.register(
-                ItemMobSoul()
-                        .setRegistryName(SpawnerCraft.modid, ItemMobSoul.agglomerationId)
-                        .setUnlocalizedName("${SpawnerCraft.modid}.${ItemMobSoul.agglomerationId}")
-        )
+        for (id in setOf(ItemMobSoul.essenceId, ItemMobSoul.agglomerationId)) {
+            event.registry.register(
+                    ItemMobSoul()
+                            .setRegistryName(SpawnerCraft.modid, id)
+                            .setUnlocalizedName("${SpawnerCraft.modid}.$id")
+            )
+        }
         SpawnerCraft.logger.info("Items registered.")
     }
 
     @JvmStatic
     @SubscribeEvent
     fun registerModels(event: ModelRegistryEvent) {
-        ModelLoader.setCustomModelResourceLocation(
-                mob_essence,
-                0,
-                ModelResourceLocation(mob_essence.registryName, "inventory")
-        )
-        ModelLoader.setCustomModelResourceLocation(
-                mob_agglomeration,
-                0,
-                ModelResourceLocation(mob_agglomeration.registryName, null)
-        )
+        for (item in setOf(mob_essence, mob_agglomeration)) {
+            ModelLoader.setCustomModelResourceLocation(
+                    item, 0,
+                    ModelResourceLocation(item.registryName.toString())
+            )
+        }
         SpawnerCraft.logger.info("Item models registered.")
     }
 
     @SideOnly(Side.CLIENT)
     fun registerColors(itemColors: ItemColors) {
-        itemColors.registerItemColorHandler(IItemColor { stack: ItemStack, tintIndex: Int ->
-            val eggInfo = EntityList.ENTITY_EGGS[ItemMonsterPlacer.getNamedIdFrom(stack)]
-            (if (tintIndex == 0) eggInfo?.primaryColor else eggInfo?.secondaryColor) ?: -1
-        }, mob_essence, mob_agglomeration)
+        itemColors.registerItemColorHandler(ItemMobSoul.colorHandler, mob_essence, mob_agglomeration)
         SpawnerCraft.logger.info("Item colors registered.")
     }
 }

@@ -2,8 +2,7 @@ package cad97.spawnercraftkt
 
 import cad97.spawnercraftkt.gui.GuiFactory
 import cad97.spawnercraftkt.proxy.ClientProxy
-import cad97.spawnercraftkt.proxy.Proxy
-import cad97.spawnercraftkt.proxy.ServerProxy
+import cad97.spawnercraftkt.proxy.CommonProxy
 import net.minecraft.creativetab.CreativeTabs
 import net.minecraft.init.Blocks
 import net.minecraft.item.Item
@@ -26,8 +25,8 @@ import org.apache.logging.log4j.Logger
         modLanguageAdapter = "net.shadowfacts.forgelin.KotlinAdapter"
 )
 object SpawnerCraft {
-    @SidedProxy(modId = modid, clientSide = ClientProxy.qualifiedName, serverSide = ServerProxy.qualifiedName)
-    lateinit var proxy: Proxy private set
+    @SidedProxy(modId = modid, clientSide = ClientProxy.qualifiedName, serverSide = CommonProxy.qualifiedName)
+    lateinit var proxy: CommonProxy private set
     lateinit var logger: Logger private set
     const val modid = "spawnercraftkt"
     const val name = "SpawnerCraft"
