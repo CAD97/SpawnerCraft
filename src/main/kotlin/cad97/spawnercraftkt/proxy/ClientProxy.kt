@@ -1,5 +1,6 @@
 package cad97.spawnercraftkt.proxy
 
+import cad97.spawnercraftkt.init.SpawnerCraftBlocks
 import cad97.spawnercraftkt.init.SpawnerCraftItems
 import net.minecraft.client.Minecraft
 import net.minecraftforge.fml.common.event.FMLInitializationEvent
@@ -13,5 +14,6 @@ class ClientProxy : Proxy() {
     override fun init(event: FMLInitializationEvent) {
         super.init(event)
         SpawnerCraftItems.registerColors(Minecraft.getMinecraft().itemColors)
+        SpawnerCraftBlocks.registerColors(Minecraft.getMinecraft().itemColors, Minecraft.getMinecraft().blockColors)
     }
 }

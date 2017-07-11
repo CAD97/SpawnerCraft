@@ -5,4 +5,5 @@ item.spawnercraftkt.mob_agglomeration.name=Agglomeration of %s
 
 itemGroup.spawnercraft.tab=SpawnerCraft
 
+tile.spawnercraftkt.mob_block.name=Solid %s
 tile.spawnercraftkt.mob_cage.name=Empty Spawner

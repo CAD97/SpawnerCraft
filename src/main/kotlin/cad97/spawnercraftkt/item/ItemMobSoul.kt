@@ -33,7 +33,7 @@ class ItemMobSoul : Item() {
     override fun getSubItems(tab: CreativeTabs, items: NonNullList<ItemStack>) {
         if (this.isInCreativeTab(tab)) {
             for (entityEggInfo in EntityList.ENTITY_EGGS.values) {
-                val stack = ItemStack(this, 1)
+                val stack = ItemStack(this)
                 applyEntityIdToItemStack(stack, entityEggInfo.spawnedID)
                 items.add(stack)
             }

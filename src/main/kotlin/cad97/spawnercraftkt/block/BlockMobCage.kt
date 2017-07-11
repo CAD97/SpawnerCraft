@@ -11,8 +11,10 @@ import net.minecraft.util.ResourceLocation
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 
-object BlockMobCage : Block(Material.ROCK) {
-    const val id = "mob_cage"
+class BlockMobCage : Block(Material.ROCK) {
+    companion object {
+        const val id = "mob_cage"
+    }
 
     init {
         registryName = ResourceLocation(SpawnerCraft.modid, id)
@@ -25,6 +27,7 @@ object BlockMobCage : Block(Material.ROCK) {
 
     @Suppress("OverridingDeprecatedMember")
     override fun isOpaqueCube(state: IBlockState) = false
+
     @SideOnly(Side.CLIENT)
     override fun getBlockLayer() = BlockRenderLayer.CUTOUT
 }
