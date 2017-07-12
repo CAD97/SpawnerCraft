@@ -2,6 +2,7 @@ package cad97.spawnercraftkt.init
 
 import cad97.spawnercraftkt.SpawnerCraft
 import cad97.spawnercraftkt.item.ItemMobSoul
+import cad97.spawnercraftkt.item.ItemMobSpirit
 import net.minecraft.client.renderer.block.model.ModelResourceLocation
 import net.minecraft.client.renderer.color.ItemColors
 import net.minecraft.item.Item
@@ -25,6 +26,10 @@ object SpawnerCraftItems {
     lateinit var mob_agglomeration: Item private set
 
     @JvmStatic
+    @GameRegistry.ObjectHolder("${SpawnerCraft.modid}:${ItemMobSpirit.id}")
+    lateinit var mob_spirit: Item private set
+
+    @JvmStatic
     @SubscribeEvent
     fun registerItems(event: RegistryEvent.Register<Item>) {
         for (id in setOf(ItemMobSoul.essenceId, ItemMobSoul.agglomerationId)) {
@@ -34,13 +39,14 @@ object SpawnerCraftItems {
                             .setUnlocalizedName("${SpawnerCraft.modid}.$id")
             )
         }
+        event.registry.register(ItemMobSpirit())
         SpawnerCraft.logger.info("Items registered.")
     }
 
     @JvmStatic
     @SubscribeEvent
     fun registerModels(event: ModelRegistryEvent) {
-        for (item in setOf(mob_essence, mob_agglomeration)) {
+        for (item in setOf(mob_essence, mob_agglomeration, mob_spirit)) {
             ModelLoader.setCustomModelResourceLocation(
                     item, 0,
                     ModelResourceLocation(item.registryName.toString())
@@ -51,7 +57,7 @@ object SpawnerCraftItems {
 
     @SideOnly(Side.CLIENT)
     fun registerColors(itemColors: ItemColors) {
-        itemColors.registerItemColorHandler(ItemMobSoul.colorHandler, mob_essence, mob_agglomeration)
+        itemColors.registerItemColorHandler(ItemMobSoul.colorHandler, mob_essence, mob_agglomeration, mob_spirit)
         SpawnerCraft.logger.info("Item colors registered.")
     }
 }

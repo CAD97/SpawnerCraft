@@ -12,7 +12,7 @@ import net.minecraft.item.ItemMonsterPlacer
 import net.minecraft.item.ItemStack
 import net.minecraft.util.NonNullList
 
-class ItemMobSoul : Item() {
+open class ItemMobSoul : Item() {
     companion object {
         const val essenceId = "mob_essence"
         const val agglomerationId = "mob_agglomeration"

@@ -1,0 +1,11 @@
+{
+  "type": "spawnercraftkt:nbt_pipethrough",
+  "input": {
+    "item": "spawnercraftkt:mob_block"
+  },
+  "count": 1,
+  "output": {
+    "item": "spawnercraftkt:mob_spirit",
+    "count": 9
+  }
+}

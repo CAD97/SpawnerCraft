@@ -1,7 +1,8 @@
 entity.null.name=Mob
 
-item.spawnercraftkt.mob_essence.name=Essence of %s
 item.spawnercraftkt.mob_agglomeration.name=Agglomeration of %s
+item.spawnercraftkt.mob_essence.name=Essence of %s
+item.spawnercraftkt.mob_spirit.name=Spirit of %s
 
 itemGroup.spawnercraft.tab=SpawnerCraft
 
