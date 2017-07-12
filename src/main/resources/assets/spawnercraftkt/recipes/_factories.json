@@ -1,5 +1,6 @@
 {
   "recipes": {
-    "nbt_pipethrough": "cad97.spawnercraftkt.recipe.NBTPreservingCompactingRecipe$Factory"
+    "nbt_pipethrough": "cad97.spawnercraftkt.recipe.NBTPreservingCompactingRecipe$Factory",
+    "config_shaped": "cad97.spawnercraftkt.recipe.ConfigDependentShapedRecipeFactory"
   }
 }

@@ -68,7 +68,7 @@ class BlockMobBlock : BlockBreakable(Material.CLAY, false, MapColor.GRASS), ITil
     override fun createBlockState() = BlockStateContainer.Builder(this).add(mobProperty).build()!!
     override fun getExtendedState(state: IBlockState, world: IBlockAccess, pos: BlockPos): IBlockState {
         val tileEntity = world.cacheSafeGetTileEntity(pos)
-        val mob = (tileEntity as TileEntityMobBlock).mob
+        val mob = (tileEntity as? TileEntityMobBlock)?.mob ?: ResourceLocation("null")
         return (state as IExtendedBlockState).withProperty(mobProperty, mob)
     }
 

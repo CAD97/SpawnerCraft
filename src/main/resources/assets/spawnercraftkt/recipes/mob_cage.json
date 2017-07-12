@@ -1,0 +1,17 @@
+{
+  "type": "config_shaped",
+  "config": "spawnerCraftable",
+  "pattern": [
+    "###",
+    "# #",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:iron_bars"
+    }
+  },
+  "result": {
+    "item": "spawnercraftkt:mob_cage"
+  }
+}

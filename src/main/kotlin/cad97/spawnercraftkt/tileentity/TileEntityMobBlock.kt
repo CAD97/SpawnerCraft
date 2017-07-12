@@ -1,6 +1,5 @@
 package cad97.spawnercraftkt.tileentity
 
-import cad97.spawnercraftkt.SpawnerCraft
 import cad97.spawnercraftkt.block.BlockMobBlock
 import com.google.common.base.MoreObjects
 import net.minecraft.item.ItemMonsterPlacer
@@ -31,7 +30,6 @@ class TileEntityMobBlock : TileEntity() {
 
     override fun readFromNBT(compound: NBTTagCompound) {
         super.readFromNBT(compound)
-        SpawnerCraft.logger.info(compound)
         mob = ResourceLocation(compound.getString("mob") ?: "null")
     }
 
