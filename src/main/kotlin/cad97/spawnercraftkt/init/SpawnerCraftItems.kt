@@ -1,6 +1,7 @@
 package cad97.spawnercraftkt.init
 
 import cad97.spawnercraftkt.SpawnerCraft
+import cad97.spawnercraftkt.item.ItemMobBlock
 import cad97.spawnercraftkt.item.ItemMobSoul
 import cad97.spawnercraftkt.item.ItemMobSpirit
 import net.minecraft.client.renderer.block.model.ModelResourceLocation
@@ -30,6 +31,10 @@ object SpawnerCraftItems {
     lateinit var mob_spirit: Item private set
 
     @JvmStatic
+    @GameRegistry.ObjectHolder("${SpawnerCraft.modid}:${ItemMobBlock.id}")
+    lateinit var mob_block: Item private set
+
+    @JvmStatic
     @SubscribeEvent
     fun registerItems(event: RegistryEvent.Register<Item>) {
         for (id in setOf(ItemMobSoul.essenceId, ItemMobSoul.agglomerationId)) {
@@ -40,6 +45,7 @@ object SpawnerCraftItems {
             )
         }
         event.registry.register(ItemMobSpirit())
+        event.registry.register(ItemMobBlock())
         SpawnerCraft.logger.info("Items registered.")
     }
 

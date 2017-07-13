@@ -14,14 +14,12 @@ import net.minecraft.block.material.Material
 import net.minecraft.block.state.BlockStateContainer
 import net.minecraft.block.state.IBlockState
 import net.minecraft.client.renderer.color.IBlockColor
-import net.minecraft.creativetab.CreativeTabs
 import net.minecraft.entity.EntityList
 import net.minecraft.entity.EntityLivingBase
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.item.ItemMonsterPlacer
 import net.minecraft.item.ItemStack
 import net.minecraft.util.BlockRenderLayer
-import net.minecraft.util.NonNullList
 import net.minecraft.util.ResourceLocation
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.RayTraceResult
@@ -51,15 +49,6 @@ class BlockMobBlock : BlockBreakable(Material.CLAY, false, MapColor.GRASS), ITil
 
     @SideOnly(Side.CLIENT)
     override fun getBlockLayer() = BlockRenderLayer.CUTOUT_MIPPED
-
-    // TODO: Remove when not using ItemBlock
-    override fun getSubBlocks(tab: CreativeTabs, items: NonNullList<ItemStack>) {
-        for (entityEggInfo in EntityList.ENTITY_EGGS.values) {
-            val stack = ItemStack(this)
-            ItemMonsterPlacer.applyEntityIdToItemStack(stack, entityEggInfo.spawnedID)
-            items.add(stack)
-        }
-    }
 
     override fun createNewTileEntity(world: World, meta: Int) = TileEntityMobBlock()
     override fun onBlockPlacedBy(world: World, pos: BlockPos, state: IBlockState, placer: EntityLivingBase, stack: ItemStack) =

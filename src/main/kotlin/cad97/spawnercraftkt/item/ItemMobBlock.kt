@@ -1,37 +1,30 @@
 package cad97.spawnercraftkt.item
 
 import cad97.spawnercraftkt.SpawnerCraft
-import cad97.spawnercraftkt.extensions.EntityEggInfo.color
+import cad97.spawnercraftkt.block.BlockMobBlock
 import cad97.spawnercraftkt.extensions.Item.getLocalizedName
-import net.minecraft.client.renderer.color.IItemColor
+import cad97.spawnercraftkt.init.SpawnerCraftBlocks
 import net.minecraft.creativetab.CreativeTabs
 import net.minecraft.entity.EntityList
-import net.minecraft.entity.EntityList.getTranslationName
-import net.minecraft.item.Item
+import net.minecraft.item.ItemBlock
 import net.minecraft.item.ItemMonsterPlacer
 import net.minecraft.item.ItemStack
 import net.minecraft.util.NonNullList
+import net.minecraft.util.ResourceLocation
 
-open class ItemMobSoul : Item() {
+class ItemMobBlock : ItemBlock(SpawnerCraftBlocks.mob_block) {
     companion object {
-        const val essenceId = "mob_essence"
-        const val agglomerationId = "mob_agglomeration"
-
-        val colorHandler = IItemColor { stack: ItemStack, tintIndex: Int ->
-            val mob = ItemMonsterPlacer.getNamedIdFrom(stack)
-            EntityList.ENTITY_EGGS[mob].color[tintIndex] ?: -1
-        }
+        const val id = BlockMobBlock.id
     }
 
     init {
-        maxStackSize = 64
-        creativeTab = SpawnerCraft.tab
+        registryName = ResourceLocation(SpawnerCraft.modid, id)
     }
 
     @Suppress("DEPRECATION")
     override fun getItemStackDisplayName(stack: ItemStack): String {
         val itemName = getLocalizedName(stack)
-        val mobName = getTranslationName(ItemMonsterPlacer.getNamedIdFrom(stack))
+        val mobName = EntityList.getTranslationName(ItemMonsterPlacer.getNamedIdFrom(stack))
         return itemName.format(net.minecraft.util.text.translation.I18n.translateToLocal("entity.$mobName.name"))
     }
 

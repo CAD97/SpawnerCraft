@@ -41,7 +41,6 @@ object SpawnerCraftBlocks {
     @SubscribeEvent
     fun registerItems(event: RegistryEvent.Register<Item>) {
         event.registry.register(ItemBlock(mob_cage).setRegistryName(mob_cage.registryName))
-        event.registry.register(ItemBlock(mob_block).setRegistryName(mob_block.registryName))
         SpawnerCraft.logger.info("Block items registered.")
     }
 
